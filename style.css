@@ -1,0 +1,65 @@
+body {
+    background-color: aqua;
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+
+.thumb-container {
+    padding: 0;
+
+}
+
+.thumbnail-buttons {
+    border: none;
+    margin: 10px;
+    /* background-color: rgb(236, 59, 59); */
+}
+
+
+.grass {
+    background-color: green;
+}
+
+.fire {
+    background-color: red;
+}
+
+.water {
+    background-color: blue;
+}
+
+.bug {
+    background-color: yellowgreen;
+}
+
+.normal {
+    background-color: burlywood;
+}
+
+.poison {
+    background-color: blueviolet;
+}
+
+.electric {
+    background-color: yellow;
+}
+
+.ground {
+    background-color: bisque;
+}
+
+.fairy {
+    background-color: plum;
+}
