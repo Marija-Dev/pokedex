@@ -35,21 +35,13 @@ async function fetchSubURLs() {
 function renderPokemon(promises) {
     for (let index = 0; index < promises.length; index++) {
         let pokemon = promises[index];
-
-
-        document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
-        let secondType = document.getElementsByClassName("second-type");
         
-        if (secondType === "undefined") {
-
-
-            document.getElementsByClassName("second-type").innerHTML = "";
+        document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
+        
+        if (pokemon.types[1] === undefined) {
+            document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
         }
-
     }
-
-
-
 }
 
 

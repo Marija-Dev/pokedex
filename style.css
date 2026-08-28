@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "GeistPixel-Regular";
+    src: url("./fonts/Geist_Pixel/GeistPixel-Regular-VariableFont_ELSH.ttf");
+}
+
+
 body {
     background-color: aqua;
     margin: 0;
@@ -12,54 +18,132 @@ li {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
 }
 
+h2 {
+    font-family: "GeistPixel-Regular";
+}
 
 .thumb-container {
+    display: flex;
     padding: 0;
-
 }
 
 .thumbnail-buttons {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     border: none;
+    padding: 0;
     margin: 10px;
-    /* background-color: rgb(236, 59, 59); */
+    cursor: pointer;
+    height: 350px;
+    width: 260px;
 }
+
+.pokemon-name-con {
+    display: flex;
+    gap: 50px;
+    padding-left: 10px;
+    background-color: #27272891;
+    color: white;
+    text-shadow: 0 0 5px #e4e4d8;
+}
+
+
+.poke-img {
+    position: absolute;
+    top: 20px;
+    left: 0px;
+
+
+    --scale: 1;
+    --transition-duration: 250ms;
+    scale: var(--scale);
+    transition: scale var(--transition-duration) ease-in-out;
+
+}
+
+.poke-img:hover {
+    --scale: 1.1;
+    filter: drop-shadow(10px 10px 4px #272728);
+}
+
+
+.type-con {
+    position: absolute;
+    top: 300px;
+    left: 0;
+    background-color: #27272891;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 50px;
+}
+
+.single-type,
+.second-type {
+    font-family: "GeistPixel-Regular";
+    font-size: 17px;
+    color: rgb(54, 53, 53);
+    text-shadow: 0 0 5px #fbff1a;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+
+
+.grass.poison {
+    /* background-image: radial-gradient(circle 150px, #A33EA1, #7AC74C); */
+    /* background-image: conic-gradient(#7AC74C 40%, #A33EA1 0 70%); */
+    /* border-radius: 50%; */
+
+    background: linear-gradient(135deg, rgb(1, 216, 1) 30%, rgb(178, 0, 178) 70%);
+}
+
 
 
 .grass {
-    background-color: green;
+    /* background-color: rgb(122, 199, 76); */
+    background-color: color(display-p3 0 1 0);
+    /* background: linear-gradient(135deg, #7AC74C 30%, #A33EA1 70%); */
 }
 
 .fire {
-    background-color: red;
+    background-color: #EE8130;
 }
 
 .water {
-    background-color: blue;
+    background-color: #6390F0;
 }
 
 .bug {
-    background-color: yellowgreen;
+    background-color: #A6B91A;
 }
 
 .normal {
-    background-color: burlywood;
+    background-color: #A8A77A;
 }
 
 .poison {
-    background-color: blueviolet;
+    background-color: #A33EA1;
 }
 
 .electric {
-    background-color: yellow;
+    background-color: #F7D02C;
 }
 
 .ground {
-    background-color: bisque;
+    background-color: #E2BF65;
 }
 
 .fairy {
-    background-color: plum;
+    background-color: #D685AD;
+}
+
+.flying {
+    background-color: #A890F0;
 }
