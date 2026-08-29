@@ -2,6 +2,8 @@
 
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 const subUrl = [];
+const pokeData = [];
+
 
 async function fetchPokemon() {
     let response = await fetch(BASE_URL);
@@ -28,21 +30,37 @@ async function fetchSubURLs() {
 
     let promises = await Promise.all(response);
 
-    console.log(promises);
+    for (let index = 0; index < promises.length; index++) {
+        pokeData.push(promises[index]);
+    }
+
+
     renderPokemon(promises);
+
 }
+
 
 function renderPokemon(promises) {
     for (let index = 0; index < promises.length; index++) {
         let pokemon = promises[index];
-        
+
         document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
-        
+
         if (pokemon.types[1] === undefined) {
             document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
         }
     }
 }
+
+function openSinglePokemonDialog(id) {
+    let singlePokeDialog = document.getElementById("singlePokemonDialog");
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+
+    singlePokeDialog.showModal();
+    singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokemon);
+}
+
+
 
 
 

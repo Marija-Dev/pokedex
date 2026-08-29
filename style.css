@@ -39,6 +39,12 @@ h2 {
     cursor: pointer;
     height: 350px;
     width: 260px;
+
+    /* background-color: #afafb8;
+
+    background-image: url("./arena.png");
+    object-fit: fill;
+    object-position: center; */
 }
 
 .pokemon-name-con {
@@ -49,6 +55,7 @@ h2 {
     color: white;
     text-shadow: 0 0 5px #e4e4d8;
 }
+
 
 
 .poke-img {
@@ -101,14 +108,78 @@ h2 {
     /* background-image: conic-gradient(#7AC74C 40%, #A33EA1 0 70%); */
     /* border-radius: 50%; */
 
-    background: linear-gradient(135deg, rgb(1, 216, 1) 30%, rgb(178, 0, 178) 70%);
+    background: linear-gradient(135deg, #7AC74C 30%, #A33EA1 70%);
+}
+
+.fire.flying {
+    background: linear-gradient(135deg, #EE8130 30%, #A890F0 70%);
+
+}
+
+.bug.flying {
+    background: linear-gradient(135deg, #A6B91A 30%, #A890F0 70%);
+
+}
+
+.bug.poison {
+    background: linear-gradient(135deg, #A6B91A 30%, #A33EA1 70%);
+
+}
+
+.normal.flying {
+    background: linear-gradient(135deg, #A8A77A 30%, #A890F0 70%);
+
+}
+
+.poison.ground {
+    background: linear-gradient(135deg, #A33EA1 30%, #E2BF65 70%);
+
+}
+
+.normal.fairy {
+    background: linear-gradient(135deg, #A8A77A 30%, #D685AD 70%);
+
+}
+
+.poison.flying {
+    background: linear-gradient(135deg, #A33EA1 30%, #A890F0 70%);
+
+}
+
+.bug.grass {
+    background: linear-gradient(135deg, #A6B91A 30%, #7AC74C 70%);
+
+}
+
+.water.fighting {
+    background: linear-gradient(135deg, #6390F0 30%, #C22E28 70%);
+}
+
+.rock.ground {
+    background: linear-gradient(135deg, #B6A136 30%, #E2BF65 70%);
+}
+
+.water.psychic {
+    background: linear-gradient(135deg, #6390F0 30%, #F95587 70%);
+}
+
+.electric.steel {
+    background: linear-gradient(135deg, #F7D02C 30%, #B7B7CE 70%);
+}
+
+.water.ice {
+    background: linear-gradient(135deg, #6390F0 30%, #96D9D6 70%);
 }
 
 
 
+
+
+
+
 .grass {
-    /* background-color: rgb(122, 199, 76); */
-    background-color: color(display-p3 0 1 0);
+    background-color: #7AC74C;
+    /* background-color: color(display-p3 0 1 0); */
     /* background: linear-gradient(135deg, #7AC74C 30%, #A33EA1 70%); */
 }
 
@@ -146,4 +217,33 @@ h2 {
 
 .flying {
     background-color: #A890F0;
+}
+
+.fighting {
+    background-color: #C22E28;
+}
+
+.psychic {
+    background-color: #F95587 ;
+}
+
+.rock {
+    background-color: #B6A136 ;
+}
+
+.steel {
+    background-color: #B7B7CE ;
+}
+
+.ice {
+    background-color: #96D9D6 ;
+}
+
+
+
+
+
+.dialog {
+    height: 300px;
+    width: 300px;
 }
