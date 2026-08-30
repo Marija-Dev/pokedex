@@ -4,7 +4,6 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 const subUrl = [];
 const pokeData = [];
 
-
 async function fetchPokemon() {
     let response = await fetch(BASE_URL);
     let responseToJson = await response.json();
@@ -34,11 +33,8 @@ async function fetchSubURLs() {
         pokeData.push(promises[index]);
     }
 
-
     renderPokemon(promises);
-
 }
-
 
 function renderPokemon(promises) {
     for (let index = 0; index < promises.length; index++) {
@@ -52,16 +48,66 @@ function renderPokemon(promises) {
     }
 }
 
+
+let singlePokeDialog = document.getElementById("singlePokemonDialog");
+
+
 function openSinglePokemonDialog(id) {
-    let singlePokeDialog = document.getElementById("singlePokemonDialog");
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
 
     singlePokeDialog.showModal();
     singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokemon);
+
+    if (pokemon.types[1] === undefined) {
+        document.getElementById(`dialogSecondType-${pokemon.id}`).innerHTML = "";
+        document.getElementById(`dialogSecondType-${pokemon.id}`).style = "border: none";
+    }
+
+    calculateHeightAndWeight(pokemon);
+    showAbilities(pokemon);
+    showStatsInfo(pokemon);
+}
+
+function closeDialog() {
+    singlePokeDialog.close();
+}
+
+console.log(pokeData);
+
+
+
+
+function calculateHeightAndWeight(pokemon) {
+    let height = document.getElementById("pokemonHeight");
+    let heightCM = pokemon.height / 10;
+    let weight = document.getElementById("pokemonWeight");
+    let weightKG = pokemon.weight / 10;
+
+    height.innerHTML = "Height: " + heightCM + "m";
+    weight.innerHTML = "Weight: " + weightKG + "kg"
+    
 }
 
 
 
+function showAbilities(pokemon) {
+    if (pokemon.abilities[2] === undefined) {
+            document.getElementById(`abilities-${pokemon.id}`).innerHTML = "";
+        }
+}
+
+
+function showStatsInfo(pokemon) {
+    let mainInfo = document.getElementById("mainInfo");
+    let statsInfo = document.getElementById("statsInfo");
+    let evoChainInfo = document.getElementById("evoChainInfo");
+    let clickedButton = event.target.id;
+
+    if (clickedButton === "statsInfo") {
+        statsInfo.innerHTML = getStatsInfoTemplate(pokemon);
+    }
+
+}
 
 
 
