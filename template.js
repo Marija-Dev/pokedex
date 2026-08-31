@@ -35,23 +35,13 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <nav class="nav-con">
-                    <a id="mainInfo" href="#">Main</a>
-                    <a onclick="showStatsInfo()" id="statsInfo" href="#">Stats</a>
-                    <a id="evoChainInfo" href="#">Evo Chain</a>
+                    <button onclick="showMainInfo(${pokemon.id})" id="mainInfo">Main</button>
+                    <button onclick="showStatsInfo(${pokemon.id})" id="statsInfo">Stats</button>
+                    <button id="evoChainInfo">Evo Chain</button>
                 </nav>
 
                 
-                
-                <div class="dialog-info-con">
-                    <p id="pokemonHeight"></p>
-                    <p id="pokemonWeight"></p>
-                    <p>Abilities: ${pokemon.abilities[0].ability.name}, 
-                                  ${pokemon.abilities[1].ability.name}  
-                                  <p class="last-ability" id="abilities-${pokemon.id}">,
-                                        ${pokemon.abilities[2]?.ability.name}
-                                  </p>
-                    </p>
-                    
+                <div id="dialogInfoCon" class="dialog-info-con">
                     
                 </div>
 
@@ -60,12 +50,62 @@ function getSinglePokemonDialogTemplate(pokemon) {
     `
 }
 
+function getMainInfoTemplate(pokemon) {
+    return `<p id="pokemonHeight"></p>
+            <p id="pokemonWeight"></p>
+            <p>Abilities: ${pokemon.abilities[0].ability.name}, 
+                          ${pokemon.abilities[1].ability.name}  
+                  <p class="last-ability" id="abilities-${pokemon.id}">,
+                            ${pokemon.abilities[2]?.ability.name}
+                                  </p>
+                    </p>
+            `
+}
+
+
 
 function getStatsInfoTemplate(pokemon) {
-    return `<p>${pokemon.stats[0].base_stat}</p>
+    return `<div class="hp">
+                <p>${pokemon.stats[0].stat.name}</p>
+            
+                <div class="status">
+                    <div id="statusBar" class="status-bar" role="progressbar" style="width: 0%">
+                </div>
+            </div>
+
+            </div>
+
+            <div>
+                <p>${pokemon.stats[1].stat.name}</p>
+                
+                <div class="status">
+                    <div id="statusBar" class="status-bar" role="progressbar" style="width: 0%">
+                </div>
+            </div>
+
+            <div>
+                <p>${pokemon.stats[2].stat.name}</p>
+                <p>${pokemon.stats[2].base_stat}</p>
+            </div>
+
+            <div>
+                <p>${pokemon.stats[3].stat.name}</p>
+                <p>${pokemon.stats[3].base_stat}</p>
+            </div>
+
+            <div>
+                <p>${pokemon.stats[4].stat.name}</p>
+                <p>${pokemon.stats[5].base_stat}</p>
+            </div>
+
+            <div>
+                <p>${pokemon.stats[5].stat.name}</p>
+                <p>${pokemon.stats[5].base_stat}</p>
+            </div>
+
+
     
-    
-    `
+            `
 }
 
 

@@ -3,6 +3,8 @@
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
 const subUrl = [];
 const pokeData = [];
+const singlePokeDialog = document.getElementById("singlePokemonDialog");
+
 
 async function fetchPokemon() {
     let response = await fetch(BASE_URL);
@@ -36,6 +38,7 @@ async function fetchSubURLs() {
     renderPokemon(promises);
 }
 
+
 function renderPokemon(promises) {
     for (let index = 0; index < promises.length; index++) {
         let pokemon = promises[index];
@@ -49,7 +52,9 @@ function renderPokemon(promises) {
 }
 
 
-let singlePokeDialog = document.getElementById("singlePokemonDialog");
+
+
+
 
 
 function openSinglePokemonDialog(id) {
@@ -63,9 +68,11 @@ function openSinglePokemonDialog(id) {
         document.getElementById(`dialogSecondType-${pokemon.id}`).style = "border: none";
     }
 
-    calculateHeightAndWeight(pokemon);
+    showMainInfo(id);
     showAbilities(pokemon);
-    showStatsInfo(pokemon);
+
+
+
 }
 
 function closeDialog() {
@@ -85,29 +92,54 @@ function calculateHeightAndWeight(pokemon) {
 
     height.innerHTML = "Height: " + heightCM + "m";
     weight.innerHTML = "Weight: " + weightKG + "kg"
-    
-}
 
+}
 
 
 function showAbilities(pokemon) {
     if (pokemon.abilities[2] === undefined) {
-            document.getElementById(`abilities-${pokemon.id}`).innerHTML = "";
-        }
-}
-
-
-function showStatsInfo(pokemon) {
-    let mainInfo = document.getElementById("mainInfo");
-    let statsInfo = document.getElementById("statsInfo");
-    let evoChainInfo = document.getElementById("evoChainInfo");
-    let clickedButton = event.target.id;
-
-    if (clickedButton === "statsInfo") {
-        statsInfo.innerHTML = getStatsInfoTemplate(pokemon);
+        document.getElementById(`abilities-${pokemon.id}`).innerHTML = "";
     }
-
 }
 
 
+function showMainInfo(id) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+    let dialogInfoCon = document.getElementById("dialogInfoCon");
+
+    dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon);
+
+    calculateHeightAndWeight(pokemon);
+    showAbilities(pokemon);
+}
+
+function showStatsInfo(id) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+    let dialogInfoCon = document.getElementById("dialogInfoCon");
+    let stats = `${pokemon.stats[0].base_stat}`;
+
+    dialogInfoCon.innerHTML = getStatsInfoTemplate(pokemon);
+    document.getElementById("statusBar").innerHTML = `<p class="stats-points">${pokemon.stats[0].base_stat}</p>`;
+    document.getElementById("statusBar").style = `width: ${pokemon.stats[0].base_stat}%;`;
+
+    if (stats === 255) {
+        document.getElementById("progressBar").style = "width: 100%";
+    }
+}
+
+
+
+
+
+
+// function statusBar(id) {
+
+//     let pokemon = pokeData.find(pokemon => pokemon.id === id);
+
+
+
+
+
+
+// }
 

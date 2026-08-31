@@ -40,12 +40,63 @@ h2 {
     height: 350px;
     width: 260px;
 
-    /* background-color: #afafb8;
 
-    background-image: url("./arena.png");
-    object-fit: fill;
-    object-position: center; */
+    animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
+
 }
+
+
+
+
+
+/* .thumbnail-buttons,
+.thumbnail-buttons::before,
+.thumbnail-buttons::after {
+    box-sizing: border-box;
+} */
+
+
+
+/* .thumbnail-buttons:hover { */
+    /* width: 260px; */
+    /* height: 350px; */
+
+
+    /* border: 4px solid transparent; */
+
+    /* Paint an image in the border */
+    /* border-image: conic-gradient(from var(--angle), */
+            /* #f7f7f7 0deg 90deg, */
+            /* #d8d8d7 90deg 180deg, */
+            /* #377af5 180deg 270deg, */
+            /* #c0c2c0 270deg 360deg) 6 stretch; */
+/* } */
+
+/* @property --opacity {
+    syntax: "<number>";
+    initial-value: 0.5;
+    inherits: false;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes opacityChange {
+    to {
+        --opacity: 1;
+    }
+}
+
+@keyframes rotate {
+    to {
+        --angle: 360deg;
+    }
+} */
+
+
 
 .pokemon-name-con {
     display: flex;
@@ -249,7 +300,6 @@ dialog {
     height: 500px;
     width: 300px;
     border-style: none;
-    /* background-color: white; */
     position: fixed;
     padding: 0;
 }
@@ -260,12 +310,6 @@ dialog::backdrop {
     background-color: rgba(173, 173, 173, 0.616);
     backdrop-filter: blur(8px);
 }
-
-/* 
-.dialog-main {
-    display: flex;
-    justify-content: center;
-} */
 
 
 
@@ -294,10 +338,7 @@ dialog::backdrop {
 .dialog-poke-img-con {
     position: absolute;
     top: 71px;
-    /* left: 30px; */
-
-    /* padding-bottom: 10px; */
-    width: 300px;
+    width: 100%;
     height: 200px;
     display: flex;
     justify-content: center;
@@ -323,7 +364,8 @@ dialog::backdrop {
 
 }
 
-.dialog-single-type, .dialog-second-type {
+.dialog-single-type,
+.dialog-second-type {
     border: 1px solid #fcfcfd;
     font-family: "GeistPixel-Regular";
     font-size: 17px;
@@ -333,10 +375,6 @@ dialog::backdrop {
     padding: 5px;
 }
 
-.dialog-info-con {
-    position: relative;
-    top: 180px;
-}
 
 
 .nav-con {
@@ -348,17 +386,46 @@ dialog::backdrop {
     background-color: #2b2bd0;
     height: 50px;
     font-size: 18px;
+
+
+}
+
+.dialog-info-con {
+    position: relative;
+    top: 150px;
+}
+
+
+
+
+.status {
+    display: flex;
+    align-items: center;
+    background-color: #e0bfdf;
+    width: 60%;
+    height: 30px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B6A136;
+    height: 30px;
+    border-radius: 20px;
+
+}
+
+/* .stats-points {
+    display: flex;
     
-
-}
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-/* .last-ability {
-    position: absolute;
-    top: 53px;
-    left: 201px;
 } */
+
+.hp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
