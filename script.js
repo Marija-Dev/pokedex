@@ -113,33 +113,30 @@ function showMainInfo(id) {
     showAbilities(pokemon);
 }
 
-function showStatsInfo(id) {
+function showStatsInfo(id, index) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let dialogInfoCon = document.getElementById("dialogInfoCon");
-    let stats = `${pokemon.stats[0].base_stat}`;
+    let allStats = pokemon.stats;
+    document.getElementById("dialogInfoCon").innerHTML = "";
 
-    dialogInfoCon.innerHTML = getStatsInfoTemplate(pokemon);
-    document.getElementById("statusBar").innerHTML = `<p class="stats-points">${pokemon.stats[0].base_stat}</p>`;
-    document.getElementById("statusBar").style = `width: ${pokemon.stats[0].base_stat}%;`;
-
-    if (stats === 255) {
-        document.getElementById("progressBar").style = "width: 100%";
+    for (let index = 0; index < allStats.length; index++) {
+        let stats = pokemon.stats[index].base_stat;
+        document.getElementById("dialogInfoCon").innerHTML += getStatsInfoTemplate(pokemon, index);
+        
+        if (stats === 255) {
+            document.getElementById(`statusBar-${index}`).style = "width: 100%";
+        } else {
+            document.getElementById(`statusBar-${index}`).style = `width: ${(stats / 255) * 100}%`;
+        }
     }
 }
 
 
 
-
-
-
-// function statusBar(id) {
-
-//     let pokemon = pokeData.find(pokemon => pokemon.id === id);
+   
 
 
 
 
 
 
-// }
 

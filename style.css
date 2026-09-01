@@ -58,18 +58,18 @@ h2 {
 
 
 /* .thumbnail-buttons:hover { */
-    /* width: 260px; */
-    /* height: 350px; */
+/* width: 260px; */
+/* height: 350px; */
 
 
-    /* border: 4px solid transparent; */
+/* border: 4px solid transparent; */
 
-    /* Paint an image in the border */
-    /* border-image: conic-gradient(from var(--angle), */
-            /* #f7f7f7 0deg 90deg, */
-            /* #d8d8d7 90deg 180deg, */
-            /* #377af5 180deg 270deg, */
-            /* #c0c2c0 270deg 360deg) 6 stretch; */
+/* Paint an image in the border */
+/* border-image: conic-gradient(from var(--angle), */
+/* #f7f7f7 0deg 90deg, */
+/* #d8d8d7 90deg 180deg, */
+/* #377af5 180deg 270deg, */
+/* #c0c2c0 270deg 360deg) 6 stretch; */
 /* } */
 
 /* @property --opacity {
@@ -297,7 +297,7 @@ h2 {
 
 
 dialog {
-    height: 500px;
+    height: 521px;
     width: 300px;
     border-style: none;
     position: fixed;
@@ -392,19 +392,27 @@ dialog::backdrop {
 
 .dialog-info-con {
     position: relative;
-    top: 150px;
+    top: 132px;
+    padding: 10px;
+    background-color: #88888a;
 }
 
 
+.stats-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
 
+}
 
 .status {
     display: flex;
     align-items: center;
-    background-color: #e0bfdf;
+    background-color: #ffffff;
     width: 60%;
-    height: 30px;
-    border: 1px solid white;
+    height: 20px;
+    border: 1px solid rgb(8, 8, 8);
     border-radius: 20px;
 }
 
@@ -412,20 +420,8 @@ dialog::backdrop {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #B6A136;
-    height: 30px;
+    background-color: #fd0606;
+    height: 20px;
     border-radius: 20px;
 
-}
-
-/* .stats-points {
-    display: flex;
-    
-} */
-
-.hp {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
 }

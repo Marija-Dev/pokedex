@@ -40,7 +40,6 @@ function getSinglePokemonDialogTemplate(pokemon) {
                     <button id="evoChainInfo">Evo Chain</button>
                 </nav>
 
-                
                 <div id="dialogInfoCon" class="dialog-info-con">
                     
                 </div>
@@ -64,44 +63,24 @@ function getMainInfoTemplate(pokemon) {
 
 
 
-function getStatsInfoTemplate(pokemon) {
-    return `<div class="hp">
-                <p>${pokemon.stats[0].stat.name}</p>
-            
-                <div class="status">
-                    <div id="statusBar" class="status-bar" role="progressbar" style="width: 0%">
-                </div>
-            </div>
-
-            </div>
-
-            <div>
-                <p>${pokemon.stats[1].stat.name}</p>
+function getStatsInfoTemplate(pokemon, index) {
+    return `<div class="stats-con">
+                <p>${pokemon.stats[index].stat.name}</p>
                 
                 <div class="status">
-                    <div id="statusBar" class="status-bar" role="progressbar" style="width: 0%">
+                    <div id="statusBar-${index}" class="status-bar" role="statusbar" style="width: 0%">
+                        <p class="stats-points">${pokemon.stats[index].base_stat}</p>
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <p>${pokemon.stats[2].stat.name}</p>
-                <p>${pokemon.stats[2].base_stat}</p>
-            </div>
 
-            <div>
-                <p>${pokemon.stats[3].stat.name}</p>
-                <p>${pokemon.stats[3].base_stat}</p>
-            </div>
+           
 
-            <div>
-                <p>${pokemon.stats[4].stat.name}</p>
-                <p>${pokemon.stats[5].base_stat}</p>
-            </div>
+           
 
-            <div>
-                <p>${pokemon.stats[5].stat.name}</p>
-                <p>${pokemon.stats[5].base_stat}</p>
-            </div>
+            
+
 
 
     
