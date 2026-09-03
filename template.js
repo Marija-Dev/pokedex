@@ -21,7 +21,8 @@ function getSinglePokemonTemplate(pokemon) {
 function getSinglePokemonDialogTemplate(pokemon) {
     return `<main class"dialog-main">
                 <div class="dialog-header">
-                    <h2 class="dialog-poke-name">${pokemon.forms[0].name}</h2>
+                    <h2># ${pokemon.id}</h2>
+                    <h2 class="dialog-poke-name">${pokemon.forms[0].name.charAt(0).toUpperCase() + pokemon.forms[0].name.slice(1)}</h2>
                     <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-x">X</button>
                 </div>
 
@@ -37,7 +38,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 <nav class="nav-con">
                     <button onclick="showMainInfo(${pokemon.id})" id="mainInfo">Main</button>
                     <button onclick="showStatsInfo(${pokemon.id})" id="statsInfo">Stats</button>
-                    <button id="evoChainInfo">Evo Chain</button>
+                    <button onclick="showEvoChain(${pokemon.id})" id="evoChainInfo">Evo Chain</button>
                 </nav>
 
                 <div id="dialogInfoCon" class="dialog-info-con">
@@ -52,12 +53,12 @@ function getSinglePokemonDialogTemplate(pokemon) {
 function getMainInfoTemplate(pokemon) {
     return `<p id="pokemonHeight"></p>
             <p id="pokemonWeight"></p>
-            <p>Abilities: ${pokemon.abilities[0].ability.name}, 
-                          ${pokemon.abilities[1].ability.name}  
-                  <p class="last-ability" id="abilities-${pokemon.id}">,
-                            ${pokemon.abilities[2]?.ability.name}
-                                  </p>
-                    </p>
+            <p>Abilities: ${pokemon.abilities[0].ability.name},
+                          ${pokemon.abilities[1].ability.name}
+                <p class="last-ability" id="abilities-${pokemon.id}">,
+                    ${pokemon.abilities[2]?.ability.name}
+                </p>
+            </p>
             `
 }
 
@@ -65,7 +66,7 @@ function getMainInfoTemplate(pokemon) {
 
 function getStatsInfoTemplate(pokemon, index) {
     return `<div class="stats-con">
-                <p>${pokemon.stats[index].stat.name}</p>
+                <p>${pokemon.stats[index].stat.name.charAt(0).toUpperCase() + pokemon.stats[index].stat.name.slice(1)}</p>
                 
                 <div class="status">
                     <div id="statusBar-${index}" class="status-bar" role="statusbar" style="width: 0%">

@@ -13,21 +13,31 @@
 
 </head>
 
-<body onload="fetchPokemon()">
+<body onload="init()">
+    <header class="header-content">
+        <h1 class="header-text">Pokemon</h1>
+    </header>
+
+        
+    <div id="spinnerCon" class="spinner-con">
+        <div id="loadingSpinner" class="loading-spinner hidden">
+            <img class="spinner-img" src="./loading-spinner.png" alt="">
+        </div>
+    </div>
+
     <div class="thumb-container">
         <ul>
             <li id="singlePokeCard">
-                
+
             </li>
         </ul>
     </div>
 
     <dialog id="singlePokemonDialog" class="dialog">
-        
+
     </dialog>
 </body>
 
 </html>
-
 
 

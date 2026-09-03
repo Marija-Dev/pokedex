@@ -24,8 +24,26 @@ h2 {
     font-family: "GeistPixel-Regular";
 }
 
+.header-content {
+    font-family: "GeistPixel-Regular";
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+
+}
+
+.header-text {
+    font-size: 80px;
+    font-weight: bold;
+    color: rgb(233, 235, 231);
+    -webkit-text-stroke: 0.5px rgb(97, 137, 15);
+}
+
 .thumb-container {
     display: flex;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
     padding: 0;
 }
 
@@ -317,9 +335,11 @@ dialog::backdrop {
     display: flex;
     padding-top: 0px;
     padding-left: 20px;
-    background-color: #27272891;
+    /* background-color: #27272891; */
+    background: blue;
     color: white;
     text-shadow: 0 0 5px #e4e4d8;
+    gap: 40px;
 }
 
 
@@ -383,7 +403,7 @@ dialog::backdrop {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #2b2bd0;
+    background-color: #3636ea;
     height: 50px;
     font-size: 18px;
 
@@ -394,7 +414,7 @@ dialog::backdrop {
     position: relative;
     top: 132px;
     padding: 10px;
-    background-color: #88888a;
+    background-color: #43de57;
 }
 
 
@@ -423,5 +443,40 @@ dialog::backdrop {
     background-color: #fd0606;
     height: 20px;
     border-radius: 20px;
+}
 
+.spinner-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 250px;
+    height: 100px;
+    width: 100px;
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-img {
+    width: 100px;
+    height: 100px;
 }

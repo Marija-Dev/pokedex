@@ -6,6 +6,24 @@ const pokeData = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
 
 
+function init() {
+    showLoadingSpinner();
+
+}
+
+function showLoadingSpinner() {
+    let loadingSpinner = document.getElementById("loadingSpinner");
+
+    loadingSpinner.classList.remove("hidden");
+
+    setTimeout(() => {
+        loadingSpinner.classList.add("hidden")
+        fetchPokemon();
+    }, 10000);
+
+    
+}
+
 async function fetchPokemon() {
     let response = await fetch(BASE_URL);
     let responseToJson = await response.json();
@@ -35,6 +53,8 @@ async function fetchSubURLs() {
         pokeData.push(promises[index]);
     }
 
+
+
     renderPokemon(promises);
 }
 
@@ -49,6 +69,7 @@ function renderPokemon(promises) {
             document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
         }
     }
+
 }
 
 
@@ -121,7 +142,7 @@ function showStatsInfo(id, index) {
     for (let index = 0; index < allStats.length; index++) {
         let stats = pokemon.stats[index].base_stat;
         document.getElementById("dialogInfoCon").innerHTML += getStatsInfoTemplate(pokemon, index);
-        
+
         if (stats === 255) {
             document.getElementById(`statusBar-${index}`).style = "width: 100%";
         } else {
@@ -130,9 +151,15 @@ function showStatsInfo(id, index) {
     }
 }
 
+function showEvoChain() {
+
+}
 
 
-   
+
+
+
+
 
 
 
