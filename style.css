@@ -29,14 +29,23 @@ h2 {
     max-width: 1440px;
     width: 100%;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
 
 .header-text {
-    font-size: 80px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: bold;
-    color: rgb(233, 235, 231);
+    /* color: rgb(233, 235, 231); */
     -webkit-text-stroke: 0.5px rgb(97, 137, 15);
+}
+
+.input {
+    height: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .thumb-container {
@@ -61,6 +70,43 @@ h2 {
 
     animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
 
+}
+
+
+.spinner-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 250px;
+    height: 100px;
+    width: 100px;
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner-img {
+    width: 100px;
+    height: 100px;
 }
 
 
@@ -315,11 +361,12 @@ h2 {
 
 
 dialog {
-    height: 521px;
+    height: 520px;
     width: 300px;
     border-style: none;
     position: fixed;
     padding: 0;
+    border-radius: 20px;
 }
 
 dialog::backdrop {
@@ -415,6 +462,10 @@ dialog::backdrop {
     top: 132px;
     padding: 10px;
     background-color: #43de57;
+    height: 179px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 
@@ -430,7 +481,7 @@ dialog::backdrop {
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    width: 60%;
+    width: 55%;
     height: 20px;
     border: 1px solid rgb(8, 8, 8);
     border-radius: 20px;
@@ -445,38 +496,35 @@ dialog::backdrop {
     border-radius: 20px;
 }
 
-.spinner-con {
+.height-and-weight {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+
+}
+
+.height,
+.weight {
+    margin: 5px 0px;
+}
+
+
+.all-abilities {
+    display: flex;
+}
+
+.ability-header {
+    position: relative;
+    top: 0px;
+    padding-left: 10px;
+    display: flex;
+}
+
+.abilities-con {
+    display: flex;
     align-items: center;
     position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.loading-spinner {
-    position: absolute;
-    top: 250px;
-    height: 100px;
-    width: 100px;
-    animation: spin 1s linear infinite;
-}
-
-.hidden {
-    display: none;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.spinner-img {
-    width: 100px;
-    height: 100px;
+    top: 0px;
+    padding-left: 10px;
+    height: 30px;
+    gap: 5px;
 }

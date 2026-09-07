@@ -42,24 +42,31 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </nav>
 
                 <div id="dialogInfoCon" class="dialog-info-con">
-                    
+                   
                 </div>
 
+                <div class="all-abilities">
+                    
+                    <div id="abilitiesCon" class="abilities-con">
+                            
+                    </div>
+                </div>
             </main>
     
     `
 }
 
-function getMainInfoTemplate(pokemon) {
-    return `<p id="pokemonHeight"></p>
-            <p id="pokemonWeight"></p>
-            <p>Abilities: ${pokemon.abilities[0].ability.name},
-                          ${pokemon.abilities[1].ability.name}
-                <p class="last-ability" id="abilities-${pokemon.id}">,
-                    ${pokemon.abilities[2]?.ability.name}
-                </p>
-            </p>
-            `
+function getMainInfoTemplate(pokemon, index) {
+    return `<div class="height-and-weight">
+                <p class="height" id="pokemonHeight"></p>
+                <p class="weight" id="pokemonWeight"></p>
+            </div>
+           `
+}
+
+function getAbilitiesTemplate(pokemon, index) {
+    return `<p id="abilities-${index}" class="abilities">${pokemon.abilities[index].ability.name}</p>
+           `
 }
 
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0";
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
 const subUrl = [];
 const pokeData = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
@@ -19,9 +19,9 @@ function showLoadingSpinner() {
     setTimeout(() => {
         loadingSpinner.classList.add("hidden")
         fetchPokemon();
-    }, 10000);
+    }, 3000);
 
-    
+
 }
 
 async function fetchPokemon() {
@@ -41,19 +41,15 @@ async function fetchPokemon() {
 
 async function fetchSubURLs() {
     let subUrlArray = subUrl.map(item => item.url);
-
     let response = subUrlArray.map(async url => {
         const resp = await fetch(url);
         return await resp.json();
     });
-
     let promises = await Promise.all(response);
 
     for (let index = 0; index < promises.length; index++) {
         pokeData.push(promises[index]);
     }
-
-
 
     renderPokemon(promises);
 }
@@ -69,13 +65,7 @@ function renderPokemon(promises) {
             document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
         }
     }
-
 }
-
-
-
-
-
 
 
 function openSinglePokemonDialog(id) {
@@ -90,10 +80,6 @@ function openSinglePokemonDialog(id) {
     }
 
     showMainInfo(id);
-    showAbilities(pokemon);
-
-
-
 }
 
 function closeDialog() {
@@ -111,33 +97,46 @@ function calculateHeightAndWeight(pokemon) {
     let weight = document.getElementById("pokemonWeight");
     let weightKG = pokemon.weight / 10;
 
-    height.innerHTML = "Height: " + heightCM + "m";
-    weight.innerHTML = "Weight: " + weightKG + "kg"
-
+    height.innerHTML = "Height: " + heightCM + " m";
+    weight.innerHTML = "Weight: " + weightKG + " kg"
 }
 
 
-function showAbilities(pokemon) {
-    if (pokemon.abilities[2] === undefined) {
-        document.getElementById(`abilities-${pokemon.id}`).innerHTML = "";
-    }
-}
 
 
-function showMainInfo(id) {
+
+function showMainInfo(id, index) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let dialogInfoCon = document.getElementById("dialogInfoCon");
 
-    dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon);
+    // dialogInfoCon.innerHTML = "";
+    dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon, index);
 
     calculateHeightAndWeight(pokemon);
     showAbilities(pokemon);
+}
+
+function showAbilities(pokemon, index) {
+    let allAbilities = pokemon.abilities;
+    let abilitiesCon = document.getElementById("abilitiesCon");
+    abilitiesCon.innerHTML = "Abilities: ";
+
+    for (let index = 0; index < allAbilities.length; index++) {
+        abilitiesCon.innerHTML += getAbilitiesTemplate(pokemon, index);
+
+        if (index < allAbilities.length - 1) {
+            document.getElementById(`abilities-${index}`).innerHTML += ",";
+        } else if (pokemon.abilities[index] === undefined) {
+            document.getElementById(`abilities-${index}`).innerHTML = "";
+        }
+    }
 }
 
 function showStatsInfo(id, index) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let allStats = pokemon.stats;
     document.getElementById("dialogInfoCon").innerHTML = "";
+    document.getElementById("abilitiesCon").innerHTML = "";
 
     for (let index = 0; index < allStats.length; index++) {
         let stats = pokemon.stats[index].base_stat;
@@ -152,6 +151,28 @@ function showStatsInfo(id, index) {
 }
 
 function showEvoChain() {
+
+}
+
+function findPokemon(name, index) {
+    let inputValue = document.getElementById("inputField").value.toLowerCase();
+    let pokemon = pokeData.find(pokemon => pokemon.forms[0].name === inputValue);
+    // let allPokemon = pokeData[index].forms[0].name;
+
+    let pokemonContainer = document.getElementById("thumbCon");
+    let pokemonContainerContent = pokemonContainer.innerText;
+    let pokemonLowerCase = pokemonContainerContent.toLowerCase();
+
+    let singlePokeCard = document.getElementById("singlePokeCard");
+    let singlePoke = singlePokeCard.innertext;
+    // let single = singlePoke.toLowerCase();
+
+
+    if (pokemonLowerCase.includes(inputValue)) {
+        singlePokeCard.innerHTML = "";
+        singlePokeCard.innerHTML = getSinglePokemonTemplate(pokemon);
+    }
+
 
 }
 
