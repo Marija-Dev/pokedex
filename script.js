@@ -156,25 +156,34 @@ function showEvoChain() {
 
 function findPokemon(name, index) {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
-    let pokemon = pokeData.find(pokemon => pokemon.forms[0].name === inputValue);
-    // let allPokemon = pokeData[index].forms[0].name;
-
-    let pokemonContainer = document.getElementById("thumbCon");
-    let pokemonContainerContent = pokemonContainer.innerText;
-    let pokemonLowerCase = pokemonContainerContent.toLowerCase();
-
+    let pokemon = pokeData.find(pokemon => pokemon.forms[0].name.toLowerCase() === inputValue);
     let singlePokeCard = document.getElementById("singlePokeCard");
-    let singlePoke = singlePokeCard.innertext;
-    // let single = singlePoke.toLowerCase();
+    let pokemonResultsContainer = document.getElementById("pokemonResultsContainer");
+
+    // if (!pokemon) {
+    //     pokemonResultsContainer.innerHTML = "Pokemon nicht gefunden";
+    // } else if (pokemon.name === inputValue) {
+    //     singlePokeCard.innerHTML = "";
+    //     pokemonResultsContainer.innerHTML = getSinglePokemonTemplate(pokemon);
+    // }
 
 
-    if (pokemonLowerCase.includes(inputValue)) {
+
+
+    if (pokemon) {
         singlePokeCard.innerHTML = "";
+        pokemonResultsContainer.innerHTML = getSinglePokemonTemplate(pokemon);
+    } else if (!pokemon) {
+        singlePokeCard.innerHTML = "";
+        pokemonResultsContainer.innerHTML = "Pokemon nicht gefunden";
+    } else if (inputValue === "") {
         singlePokeCard.innerHTML = getSinglePokemonTemplate(pokemon);
     }
-
-
 }
+
+
+
+
 
 
 
