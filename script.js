@@ -60,10 +60,13 @@ function renderPokemon(promises) {
         let pokemon = promises[index];
 
         document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
+        hideUndefinedTypes(pokemon);
+    }
+}
 
-        if (pokemon.types[1] === undefined) {
-            document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
-        }
+function hideUndefinedTypes(pokemon) {
+    if (pokemon.types[1] === undefined) {
+        document.getElementById(`secondType-${pokemon.id}`).innerHTML = "";
     }
 }
 
@@ -142,11 +145,15 @@ function showStatsInfo(id, index) {
         let stats = pokemon.stats[index].base_stat;
         document.getElementById("dialogInfoCon").innerHTML += getStatsInfoTemplate(pokemon, index);
 
-        if (stats === 255) {
-            document.getElementById(`statusBar-${index}`).style = "width: 100%";
-        } else {
-            document.getElementById(`statusBar-${index}`).style = `width: ${(stats / 255) * 100}%`;
-        }
+        statsBar(stats, index);
+    }
+}
+
+function statsBar(stats, index) {
+    if (stats === 255) {
+        document.getElementById(`statusBar-${index}`).style = "width: 100%";
+    } else {
+        document.getElementById(`statusBar-${index}`).style = `width: ${(stats / 255) * 100}%`;
     }
 }
 
@@ -154,35 +161,21 @@ function showEvoChain() {
 
 }
 
-function findPokemon(name, index) {
+function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
     let pokemon = pokeData.find(pokemon => pokemon.forms[0].name.toLowerCase() === inputValue);
-    let singlePokeCard = document.getElementById("singlePokeCard");
-    let pokemonResultsContainer = document.getElementById("pokemonResultsContainer");
-
-    // if (!pokemon) {
-    //     pokemonResultsContainer.innerHTML = "Pokemon nicht gefunden";
-    // } else if (pokemon.name === inputValue) {
-    //     singlePokeCard.innerHTML = "";
-    //     pokemonResultsContainer.innerHTML = getSinglePokemonTemplate(pokemon);
-    // }
-
-
-
+    document.getElementById("singlePokeCard").innerHTML = "";
 
     if (pokemon) {
-        singlePokeCard.innerHTML = "";
-        pokemonResultsContainer.innerHTML = getSinglePokemonTemplate(pokemon);
-    } else if (!pokemon) {
-        singlePokeCard.innerHTML = "";
-        pokemonResultsContainer.innerHTML = "Pokemon nicht gefunden";
+        document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(pokemon);
+        hideUndefinedTypes(pokemon);
     } else if (inputValue === "") {
-        singlePokeCard.innerHTML = getSinglePokemonTemplate(pokemon);
+        document.getElementById("pokemonResultsContainer").innerHTML = "";
+        renderPokemon(pokeData);
+    } else {
+        document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
     }
 }
-
-
-
 
 
 
