@@ -530,4 +530,8 @@ dialog::backdrop {
     gap: 5px;
 }
 
-
+.results-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
