@@ -36,16 +36,18 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <nav class="nav-con">
-                    <button onclick="showMainInfo(${pokemon.id})" id="mainInfo">Main</button>
-                    <button onclick="showStatsInfo(${pokemon.id})" id="statsInfo">Stats</button>
-                    <button onclick="showEvoChain(${pokemon.id})" id="evoChainInfo">Evo Chain</button>
+                    <button onclick="showMainInfo(${pokemon.id})" id="mainInfo" class="nav-con-btn">Main</button>
+                    <div class="separator"></div>
+                    <button onclick="showStatsInfo(${pokemon.id})" id="statsInfo" class="nav-con-btn">Stats</button>
+                    <div class="separator"></div>
+                    <button onclick="showEvoChain(${pokemon.id})" id="evoChainInfo" class="nav-con-btn">Evo Chain</button>
                 </nav>
 
                 <div id="dialogInfoCon" class="dialog-info-con">
                    
                 </div>
 
-                <div class="all-abilities">
+                <div id="allAbilities" class="all-abilities">
                     
                     <div id="abilitiesCon" class="abilities-con">
                             
@@ -60,6 +62,7 @@ function getMainInfoTemplate(pokemon, index) {
     return `<div class="height-and-weight">
                 <p class="height" id="pokemonHeight"></p>
                 <p class="weight" id="pokemonWeight"></p>
+                <p class="base-experience" id="baseExperience"></p>
             </div>
            `
 }
@@ -73,13 +76,16 @@ function getAbilitiesTemplate(pokemon, index) {
 
 function getStatsInfoTemplate(pokemon, index) {
     return `<div class="stats-con">
-                <p>${pokemon.stats[index].stat.name.charAt(0).toUpperCase() + pokemon.stats[index].stat.name.slice(1)}</p>
-                
+                <div class="stats-name-con"><strong>${pokemon.stats[index].stat.name.charAt(0).toUpperCase() + pokemon.stats[index].stat.name.slice(1)}</strong></div>
+               
                 <div class="status">
+                 
                     <div id="statusBar-${index}" class="status-bar" role="statusbar" style="width: 0%">
-                        <p class="stats-points">${pokemon.stats[index].base_stat}</p>
+                        
                     </div>
+                    <div class="stats-points">${pokemon.stats[index].base_stat}/${maxStats[index]}</div>
                 </div>
+                
             </div>
 
 

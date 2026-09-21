@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=300&offset=0";
 const subUrl = [];
 const pokeData = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
@@ -51,8 +51,14 @@ async function fetchSubURLs() {
         pokeData.push(promises[index]);
     }
 
+
+
     renderPokemon(promises);
+
+
 }
+
+
 
 
 function renderPokemon(promises) {
@@ -62,6 +68,8 @@ function renderPokemon(promises) {
         document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
         hideUndefinedTypes(pokemon);
     }
+
+
 }
 
 function hideUndefinedTypes(pokemon) {
@@ -89,9 +97,17 @@ function closeDialog() {
     singlePokeDialog.close();
 }
 
-console.log(pokeData);
+
+function showMainInfo(id, index) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+    let dialogInfoCon = document.getElementById("dialogInfoCon");
 
 
+    dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon, index);
+
+    calculateHeightAndWeight(pokemon);
+    showAbilities(pokemon);
+}
 
 
 function calculateHeightAndWeight(pokemon) {
@@ -99,30 +115,17 @@ function calculateHeightAndWeight(pokemon) {
     let heightCM = pokemon.height / 10;
     let weight = document.getElementById("pokemonWeight");
     let weightKG = pokemon.weight / 10;
+    let baseExperience = document.getElementById("baseExperience");
 
-    height.innerHTML = "Height: " + heightCM + " m";
-    weight.innerHTML = "Weight: " + weightKG + " kg"
-}
-
-
-
-
-
-function showMainInfo(id, index) {
-    let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let dialogInfoCon = document.getElementById("dialogInfoCon");
-
-    // dialogInfoCon.innerHTML = "";
-    dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon, index);
-
-    calculateHeightAndWeight(pokemon);
-    showAbilities(pokemon);
+    height.innerHTML = ("<strong>Height: </strong>" + heightCM + " m").replace(".", ",");
+    weight.innerHTML = ("<strong>Weight: </strong>" + weightKG + " kg").replace(".", ",");
+    baseExperience.innerHTML = "<strong>Base experience: </strong>" + pokemon.base_experience;
 }
 
 function showAbilities(pokemon, index) {
     let allAbilities = pokemon.abilities;
     let abilitiesCon = document.getElementById("abilitiesCon");
-    abilitiesCon.innerHTML = "Abilities: ";
+    abilitiesCon.innerHTML = "<p class='abilities-header'><strong>Abilities: </strong></p>";
 
     for (let index = 0; index < allAbilities.length; index++) {
         abilitiesCon.innerHTML += getAbilitiesTemplate(pokemon, index);
@@ -134,6 +137,8 @@ function showAbilities(pokemon, index) {
         }
     }
 }
+
+
 
 function showStatsInfo(id, index) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
@@ -147,13 +152,20 @@ function showStatsInfo(id, index) {
 
         statsBar(stats, index);
     }
+
+    console.log(allStats);
+
 }
 
+let maxStats = [255, 180, 230, 194, 230, 180]
+    
 function statsBar(stats, index) {
-    if (stats === 255) {
+    let singleStat = maxStats[index];
+
+    if (stats === singleStat) {
         document.getElementById(`statusBar-${index}`).style = "width: 100%";
     } else {
-        document.getElementById(`statusBar-${index}`).style = `width: ${(stats / 255) * 100}%`;
+        document.getElementById(`statusBar-${index}`).style = `width: ${(stats / singleStat) * 100}%`;
     }
 }
 
@@ -168,12 +180,21 @@ function findPokemon() {
     document.getElementById("pokemonResultsContainer").innerHTML = "";
 
     if (inputValue.length < 3) {
-        document.getElementById("pokemonResultsContainer").innerHTML = "";
         renderPokemon(pokeData);
+        console.log(pokeData);
         return
     }
 
+    findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
+
+
+}
+
+function findSinglePokemon(pokemon) {
+    if (pokemon.length === 1) {
+        document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(pokemon[0]);
+    }
 }
 
 function findPokemonHelper(pokemon) {
@@ -182,81 +203,17 @@ function findPokemonHelper(pokemon) {
 
         if (pokemon.length > 1) {
             document.getElementById("pokemonResultsContainer").innerHTML += getSinglePokemonTemplate(singlepokemon);
-        } else if (pokemon.length === 1) {
-            document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(singlepokemon);
         }
         hideUndefinedTypes(singlepokemon);
     }
-    
     findPokemonInputEmpty(pokemon);
 }
 
 function findPokemonInputEmpty(pokemon) {
     if (pokemon.length === 0) {
-        document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon nicht gefunden";
+        document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
     }
+
 }
 
 
-
-
-
-// for (let index = 0; index < pokemon.length; index++) {
-//     let singlepokemon = pokemon[index];
-
-//     if (singlepokemon) {
-//         document.getElementById("pokemonResultsContainer"). innerHTML = getSinglePokemonTemplate(singlepokemon);
-//         hideUndefinedTypes(singlepokemon);
-//     } else if (inputValue === "") {
-//         document.getElementById("pokemonResultsContainer").innerHTML = "";
-//         renderPokemon(singlepokemon);
-//     } else {
-//         document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
-//     }
-// }
-
-
-
-
-
-// function findPokemon(name, index) {
-//     let inputValue = document.getElementById("inputField").value.toLowerCase();
-//     let pokemon = pokeData.find(pokemon => pokemon.forms[0].name.toLowerCase() === inputValue);
-//     let singlePokeCard = document.getElementById("singlePokeCard");
-//     let pokemonResultsContainer = document.getElementById("pokemonResultsContainer");
-
-//     if (pokemon) {
-//         singlePokeCard.innerHTML = "";
-//         pokemonResultsContainer.innerHTML = getSinglePokemonTemplate(pokemon);
-//     } else if (!pokemon) {
-//         singlePokeCard.innerHTML = "";
-//         pokemonResultsContainer.innerHTML = "Pokemon nicht gefunden";
-//     } else if (inputValue === "") {
-//         singlePokeCard.innerHTML = getSinglePokemonTemplate(pokemon);
-//     }
-// }
-
-
-// for (let index = 0; index < pokemon.length; index++) {
-//         let singlepokemon = pokemon[index];
-
-//         if (pokemon.length > 1) {
-//             document.getElementById("pokemonResultsContainer").innerHTML += getSinglePokemonTemplate(singlepokemon);
-//             hideUndefinedTypes(singlepokemon);
-//         }
-
-//         else if (singlepokemon) {
-//             document.getElementById("pokemonResultsContainer").innerHTML = "";
-//             document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(singlepokemon);
-//             hideUndefinedTypes(singlepokemon);
-//         }
-
-//         // else if (inputValue === "") {
-//         //     document.getElementById("pokemonResultsContainer").innerHTML = "";
-//         //     renderPokemon(pokeData);
-//         // }
-
-//         // else if (!singlepokemon) {
-//         //     document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
-//         // }
-//     }
