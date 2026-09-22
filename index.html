@@ -17,8 +17,9 @@
     <header class="header-content">
         <h1 class="header-text">Pokedex</h1>
         <div>
-            <input onkeyup="findPokemon()" id="inputField" class="input" type="search" placeholder="Find pokemon (min 3 chars)">
-            
+            <input onkeyup="findPokemon()" id="inputField" class="input" type="search"
+                placeholder="Find pokemon (min 3 chars)">
+
         </div>
     </header>
 
@@ -40,9 +41,13 @@
         <div id="pokemonResultsContainer" class="results-container">
 
         </div>
+
+
     </div>
 
-
+    <div class="load-more-con">
+        <button onclick="loadMore()" id="loadMore" class="load-more-button">Load more</button>
+    </div>
 
     <dialog id="singlePokemonDialog" class="dialog">
 

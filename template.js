@@ -47,12 +47,9 @@ function getSinglePokemonDialogTemplate(pokemon) {
                    
                 </div>
 
-                <div id="allAbilities" class="all-abilities">
+                
                     
-                    <div id="abilitiesCon" class="abilities-con">
-                            
-                    </div>
-                </div>
+                
             </main>
     
     `
@@ -63,7 +60,19 @@ function getMainInfoTemplate(pokemon, index) {
                 <p class="height" id="pokemonHeight"></p>
                 <p class="weight" id="pokemonWeight"></p>
                 <p class="base-experience" id="baseExperience"></p>
+
+                <div id="allAbilities" class="all-abilities">
+                    <div id="abilitiesHeaderCon" class="abilities-header-con"></div>
+                    <div id="abilitiesCon" class="abilities-con">
+                                            
+                    </div>
+                </div>
             </div>
+           `
+}
+
+function getAbilitiesHeaderTemplate() {
+    return `<p class='abilities-header'><strong>Abilities: </strong></p>
            `
 }
 
@@ -79,10 +88,10 @@ function getStatsInfoTemplate(pokemon, index) {
                 <div class="stats-name-con"><strong>${pokemon.stats[index].stat.name.charAt(0).toUpperCase() + pokemon.stats[index].stat.name.slice(1)}</strong></div>
                
                 <div class="status">
-                 
                     <div id="statusBar-${index}" class="status-bar" role="statusbar" style="width: 0%">
                         
                     </div>
+
                     <div class="stats-points">${pokemon.stats[index].base_stat}/${maxStats[index]}</div>
                 </div>
                 

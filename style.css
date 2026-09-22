@@ -386,21 +386,29 @@ dialog::backdrop {
     background-color: rgb(3, 119, 240);
     color: white;
     text-shadow: 0 0 5px #e4e4d8;
-    gap: 40px;
+    gap: 10%;
 }
 
 
 .close-dialog-x {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    right: 0px;
+    top: 0px;
     cursor: pointer;
-    background-color: #C22E28;
+    background-color: transparent;
     border: none;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 10px;
+    color: rgb(187, 186, 186);
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    height: 30px;
+    width: 30px;
 }
+
+.close-dialog-x:hover {
+    background-color: rgb(201, 14, 14);
+}
+
 
 .dialog-poke-img-con {
     position: absolute;
@@ -483,11 +491,11 @@ dialog::backdrop {
     position: relative;
     top: 132px;
     padding: 10px;
-    background-color: #02fa72b4;
+    background-color: rgba(252, 211, 8, 0.575);
     height: 179px;
     display: flex;
     flex-direction: column;
-    font-size: 16px;
+    /* font-size: 16px; */
 
 }
 
@@ -526,13 +534,14 @@ dialog::backdrop {
     justify-content: center;
     width: 100%;
     color: #8e8ea2;
+    /* background-color: #A33EA1; */
 }
 
 .status-bar {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background-color: #fed107b1;
+    background-color: #fe0707c8;
     height: 20px;
     width: 135px;
     overflow: hidden;
@@ -547,29 +556,22 @@ dialog::backdrop {
 
 .height,
 .weight,
-.base-experience {
+.base-experience,
+.abilities-header {
     margin: 5px 0px;
 }
 
-
-
 .all-abilities {
     display: flex;
-    font-size: 16px;
-}
-
-p.abilities-header {
-    margin-top: 0px;
 
 }
 
 .abilities-con {
     display: flex;
-    position: relative;
-    top: 39px;
     padding-left: 10px;
     gap: 5px;
     flex-wrap: wrap;
+    margin: 5px 0px;
 }
 
 .abilities {
@@ -577,10 +579,6 @@ p.abilities-header {
     padding: 0;
 }
 
-#abilities-2 {
-    margin-left: 65px;
-    margin-top: 0;
-}
 
 .results-container {
     display: flex;
@@ -592,4 +590,10 @@ p.abilities-header {
 .second-type.undefined {
     margin: 0;
     padding: 0;
+}
+
+
+.load-more-con {
+    display: flex;
+    justify-content: center;
 }

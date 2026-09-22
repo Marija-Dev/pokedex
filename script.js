@@ -13,15 +13,13 @@ function init() {
 
 function showLoadingSpinner() {
     let loadingSpinner = document.getElementById("loadingSpinner");
-
     loadingSpinner.classList.remove("hidden");
 
     setTimeout(() => {
         loadingSpinner.classList.add("hidden")
-        fetchPokemon();
     }, 3000);
 
-
+    fetchPokemon();
 }
 
 async function fetchPokemon() {
@@ -62,7 +60,7 @@ async function fetchSubURLs() {
 
 
 function renderPokemon(promises) {
-    for (let index = 0; index < promises.length; index++) {
+    for (let index = 0; index < promises.length - 280; index++) {
         let pokemon = promises[index];
 
         document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
@@ -122,13 +120,12 @@ function calculateHeightAndWeight(pokemon) {
     baseExperience.innerHTML = "<strong>Base experience: </strong>" + pokemon.base_experience;
 }
 
-function showAbilities(pokemon, index) {
+function showAbilities(pokemon) {
     let allAbilities = pokemon.abilities;
-    let abilitiesCon = document.getElementById("abilitiesCon");
-    abilitiesCon.innerHTML = "<p class='abilities-header'><strong>Abilities: </strong></p>";
+    document.getElementById("abilitiesHeaderCon").innerHTML = getAbilitiesHeaderTemplate();
 
     for (let index = 0; index < allAbilities.length; index++) {
-        abilitiesCon.innerHTML += getAbilitiesTemplate(pokemon, index);
+        document.getElementById("abilitiesCon").innerHTML += getAbilitiesTemplate(pokemon, index);
 
         if (index < allAbilities.length - 1) {
             document.getElementById(`abilities-${index}`).innerHTML += ",";
@@ -144,7 +141,6 @@ function showStatsInfo(id, index) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let allStats = pokemon.stats;
     document.getElementById("dialogInfoCon").innerHTML = "";
-    document.getElementById("abilitiesCon").innerHTML = "";
 
     for (let index = 0; index < allStats.length; index++) {
         let stats = pokemon.stats[index].base_stat;
@@ -157,8 +153,8 @@ function showStatsInfo(id, index) {
 
 }
 
-let maxStats = [255, 180, 230, 194, 230, 180]
-    
+let maxStats = [255, 180, 230, 194, 230, 180];
+
 function statsBar(stats, index) {
     let singleStat = maxStats[index];
 
@@ -187,8 +183,6 @@ function findPokemon() {
 
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
-
-
 }
 
 function findSinglePokemon(pokemon) {
@@ -213,6 +207,32 @@ function findPokemonInputEmpty(pokemon) {
     if (pokemon.length === 0) {
         document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
     }
+
+}
+
+
+
+function loadMore(promises) {
+    let loadMoreButton = document.getElementById("loadMore");
+    let singlePokeCard = document.getElementById("singlePokeCard");
+    let limit = 300;
+    let addPokemon = 10;
+    let maxPages = limit / addPokemon;
+    let currentPage = 0;
+
+    for (let index = 0; index < addPokemon < pokeData.length; index++) {
+        let poki = pokeData[index];
+        
+        singlePokeCard.innerHTML += getSinglePokemonTemplate(poki);
+        
+    }
+
+    currentPage + 10;
+
+    
+
+
+
 
 }
 
