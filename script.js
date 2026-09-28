@@ -69,7 +69,7 @@ function renderPokemon(promises) {
         hideUndefinedTypes(pokemon);
     }
 
-
+    showLoadMoreButton();
 }
 
 function hideUndefinedTypes(pokemon) {
@@ -179,18 +179,21 @@ function findPokemon() {
 
     if (inputValue.length < 3) {
         renderPokemon(pokeData);
-        console.log(pokeData);
+
         return
     }
 
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
+    hideLoadMoreBtn(currentIndex + 10);
 }
 
 function findSinglePokemon(pokemon) {
     if (pokemon.length === 1) {
         document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(pokemon[0]);
+
     }
+
 }
 
 function findPokemonHelper(pokemon) {
@@ -209,7 +212,6 @@ function findPokemonInputEmpty(pokemon) {
     if (pokemon.length === 0) {
         document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
     }
-
 }
 
 
@@ -226,14 +228,21 @@ function loadMore() {
     }
 
     currentIndex = nextIndex;
-    disableLoadMoreBtn(nextIndex);
+    hideLoadMoreBtn(nextIndex);
 }
 
-function disableLoadMoreBtn(nextIndex) {
+function hideLoadMoreBtn(nextIndex) {
     let loadMoreButton = document.getElementById("loadMore");
+    let inputValue = document.getElementById("inputField").value;
 
-    if (nextIndex >= pokeData.length) {
+    if (nextIndex >= pokeData.length || inputValue.length >= 3) {
         loadMoreButton.style = "display: none";
     }
+}
+
+function showLoadMoreButton() {
+    let loadMoreCon = document.getElementById("loadMoreCon");
+
+    loadMoreCon.innerHTML = getLoadMoreTemplate();
 }
 
