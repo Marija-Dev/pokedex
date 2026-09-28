@@ -4,6 +4,8 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=300&offset=0";
 const subUrl = [];
 const pokeData = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
+let currentIndex = 20;
+let singlePokeCard = document.getElementById("singlePokeCard");
 
 
 function init() {
@@ -63,7 +65,7 @@ function renderPokemon(promises) {
     for (let index = 0; index < promises.length - 280; index++) {
         let pokemon = promises[index];
 
-        document.getElementById("singlePokeCard").innerHTML += getSinglePokemonTemplate(pokemon);
+        singlePokeCard.innerHTML += getSinglePokemonTemplate(pokemon);
         hideUndefinedTypes(pokemon);
     }
 
@@ -172,7 +174,7 @@ function showEvoChain() {
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
     let pokemon = pokeData.filter(pokemon => pokemon.forms[0].name.toLowerCase().startsWith(inputValue));
-    document.getElementById("singlePokeCard").innerHTML = "";
+    singlePokeCard.innerHTML = "";
     document.getElementById("pokemonResultsContainer").innerHTML = "";
 
     if (inputValue.length < 3) {
@@ -212,28 +214,26 @@ function findPokemonInputEmpty(pokemon) {
 
 
 
-function loadMore(promises) {
-    let loadMoreButton = document.getElementById("loadMore");
-    let singlePokeCard = document.getElementById("singlePokeCard");
-    let limit = 300;
+function loadMore() {
+    let limit = pokeData.length;
     let addPokemon = 10;
-    let maxPages = limit / addPokemon;
-    let currentPage = 0;
+    let nextIndex = currentIndex + addPokemon;
 
-    for (let index = 0; index < addPokemon < pokeData.length; index++) {
-        let poki = pokeData[index];
-        
-        singlePokeCard.innerHTML += getSinglePokemonTemplate(poki);
-        
+    for (let index = currentIndex; index < nextIndex && index < limit; index++) {
+        let pokemon = pokeData[index];
+        singlePokeCard.innerHTML += getSinglePokemonTemplate(pokemon);
+        hideUndefinedTypes(pokemon);
     }
 
-    currentPage + 10;
-
-    
-
-
-
-
+    currentIndex = nextIndex;
+    disableLoadMoreBtn(nextIndex);
 }
 
+function disableLoadMoreBtn(nextIndex) {
+    let loadMoreButton = document.getElementById("loadMore");
+
+    if (nextIndex >= pokeData.length) {
+        loadMoreButton.style = "display: none";
+    }
+}
 
