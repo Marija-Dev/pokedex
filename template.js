@@ -7,7 +7,7 @@ function getSinglePokemonTemplate(pokemon) {
                 </div>
 
                 <div class="poke-img-con">
-                    <img class="poke-img" src="${pokemon.sprites.versions["generation-viii"]["brilliant-diamond-shining-pearl"].front_default}">
+                    <img class="poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
                 </div>
 
                 <div class="type-con">
@@ -27,7 +27,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <div class="dialog-poke-img-con ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
-                    <img class="dialog-poke-img" src="${pokemon.sprites.versions["generation-viii"]["brilliant-diamond-shining-pearl"].front_default}">
+                    <img class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
                 </div>
 
                 <div class="dialog-type-con">
@@ -55,7 +55,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
     `
 }
 
-function getMainInfoTemplate(pokemon, index) {
+function getMainInfoTemplate(pokemon) {
     return `<div class="height-and-weight">
                 <p class="height" id="pokemonHeight"></p>
                 <p class="weight" id="pokemonWeight"></p>
@@ -101,6 +101,18 @@ function getStatsInfoTemplate(pokemon, index) {
             </div>
             `
 }
+
+
+function getEvoChainTemplate(pokemon, index) {
+    return `<div class="poke-img-con">
+                <p>${pokemon.chain.species.name}</p>
+                <p>${pokemon.chain.evolves_to[0].species.name}</p>
+                <p>${pokemon.chain.evolves_to[0].evolves_to[0].species.name}</p>
+                
+            </div>
+           `
+}
+
 
 function getLoadMoreTemplate() {
     return `<button onclick="loadMore()" id="loadMore" class="load-more-button">Load more</button>`
