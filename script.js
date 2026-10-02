@@ -62,15 +62,12 @@ async function fetchEvoChainSubUrl() {
 
 
     console.log("64:", evoChainData);
-    
+
 
     fetchEvolutionData();
 }
 
 async function fetchEvolutionData() {
-    // let respo = await fetch(evoChainData);
-    // let respoJson = await respo.json();
-    
     let evoDataArray = evoChainData.map(item => item.evolution_chain.url);
     let promises = await Promise.all(evoDataArray.map(async url => {
         return (await fetch(url)).json();
@@ -82,9 +79,7 @@ async function fetchEvolutionData() {
 }
 
 console.log("Evo Chain Data", evoChainData);
-
-
-console.log("EVO-DATA:", evoData);
+console.log("88 EVO-DATA:", evoData);
 
 
 async function fetchPokemon() {
@@ -222,12 +217,30 @@ function statsBar(stats, index) {
     }
 }
 
-function showEvoChain(id) {
-    let pokemon = evoData.find(pokemon => pokemon.id === id);
+function showEvoChain(index) {
+
+
+    let pokemonIndex = evoData[index - 1];
     document.getElementById("dialogInfoCon").innerHTML = "";
 
     for (let index = 0; index < evoChainData.length; index++) {
-        document.getElementById("dialogInfoCon").innerHTML = getEvoChainTemplate(pokemon, index);
+        document.getElementById("dialogInfoCon").innerHTML = getEvoChainTemplate(pokemonIndex);
+    }
+
+    if (pokemonIndex.chain.evolves_to[0].evolves_to[0]?.species.name === undefined) {
+        document.getElementById("lastEvoLevel").innerHTML = "";
+    }
+
+    showEvoChainImages(index);
+}
+
+function showEvoChainImages(index) {
+    // let pokemon = pokeData.find(pokemon => pokemon.id === id);
+    let pokemon = pokeData[index - 1];
+
+    for (let index = 0; index < pokeData.length; index++) {
+        document.getElementById("evoImagesCon").innerHTML = getEvoChainImagesTemplate(pokemon);
+
     }
 }
 

@@ -103,11 +103,37 @@ function getStatsInfoTemplate(pokemon, index) {
 }
 
 
-function getEvoChainTemplate(pokemon, index) {
-    return `<div class="poke-img-con">
-                <p>${pokemon.chain.species.name}</p>
-                <p>${pokemon.chain.evolves_to[0].species.name}</p>
-                <p>${pokemon.chain.evolves_to[0].evolves_to[0].species.name}</p>
+function getEvoChainImagesTemplate(pokemon) {
+    return `
+                <img class="poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
+           `
+}
+
+
+function getEvoChainTemplate(pokemonIndex, pokemon) {
+    return `<div class="evo-con">
+                <div>
+                   <div id="evoImagesCon">
+                
+                </div>
+
+                <div>
+                    <p>${pokemonIndex.chain.species.name}</p>
+                </div>
+
+               
+
+                <div>
+
+                    <p>${pokemonIndex.chain.evolves_to[0].species.name}</p>
+                </div>
+
+                <div id="lastEvoLevel">
+
+                    <p>${pokemonIndex.chain.evolves_to[0].evolves_to[0]?.species.name}</p>
+                </div>
+                
+                
                 
             </div>
            `
