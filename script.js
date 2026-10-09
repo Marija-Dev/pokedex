@@ -4,9 +4,11 @@ const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=300&offset=0";
 const EVO_CHAIN_URL = "https://pokeapi.co/api/v2/pokemon-species/?limit=300&offset=0";
 const subUrl = [];
 const pokeData = [];
+const pokeImg = [];
 const evoSubUrl = [];
 const evoChainData = [];
 const evoData = [];
+const evoChain = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
 let currentIndex = 20;
 let singlePokeCard = document.getElementById("singlePokeCard");
@@ -75,10 +77,16 @@ async function fetchEvolutionData() {
 
     for (let index = 0; index < promises.length; index++) {
         evoData.push(promises[index]);
+        evoChain.push(promises[index].id + " " +
+            (promises[index].chain.species.name) + " " +
+            (promises[index].chain.evolves_to[0]?.species.name) + " " +
+            (promises[index].chain.evolves_to[0]?.evolves_to[0]?.species.name))
     }
 }
 
 console.log("Evo Chain Data", evoChainData);
+console.log("EvoChain", evoChain);
+
 console.log("88 EVO-DATA:", evoData);
 
 
@@ -105,12 +113,17 @@ async function fetchSubURLs() {
 
     for (let index = 0; index < promises.length; index++) {
         pokeData.push(promises[index]);
+        pokeImg.push({ name: promises[index].name, url: promises[index].sprites.other["dream_world"]["front_default"] });
+
     }
 
     renderPokemon(promises);
 }
 
 console.log("subUrl:", subUrl);
+
+console.log("PokeImg", pokeImg);
+
 
 
 
@@ -218,31 +231,57 @@ function statsBar(stats, index) {
 }
 
 function showEvoChain(index) {
-
-
     let pokemonIndex = evoData[index - 1];
+
+    // let pokemon = pokeData[index - 1];
+
     document.getElementById("dialogInfoCon").innerHTML = "";
 
     for (let index = 0; index < evoChainData.length; index++) {
+
         document.getElementById("dialogInfoCon").innerHTML = getEvoChainTemplate(pokemonIndex);
+
+        // document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokemon);
+
+        if (pokemonIndex.chain.evolves_to[0].evolves_to[0]?.species.name === undefined) {
+            document.getElementById("lastEvoLevel").innerHTML = "";
+        }
     }
 
-    if (pokemonIndex.chain.evolves_to[0].evolves_to[0]?.species.name === undefined) {
-        document.getElementById("lastEvoLevel").innerHTML = "";
-    }
-
-    showEvoChainImages(index);
+    showFirstEvoImg(index);
 }
 
-function showEvoChainImages(index) {
-    // let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let pokemon = pokeData[index - 1];
+function showFirstEvoImg(index) {
+    let firstEvoCon = document.getElementById("firstEvoCon").textContent.trim();
+    let secondEvoCon = document.getElementById("secondEvoCon").textContent.trim();
+    let thirdEvoCon = document.getElementById("lastEvoLevel").textContent.trim();
+    
+    let evoNames = [
+        firstEvoCon, secondEvoCon, thirdEvoCon
+    ];
 
-    for (let index = 0; index < pokeData.length; index++) {
-        document.getElementById("evoImagesCon").innerHTML = getEvoChainImagesTemplate(pokemon);
+    
 
+    for (let index = 0; index < evoChain.length; index++) {
+        let evoName = evoNames[index];
+        let pokeEvoImg = pokeImg[index];
+
+        if (firstEvoCon === pokeEvoImg.name) {
+            document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+        }
+
+        if (secondEvoCon === pokeEvoImg.name) {
+            document.getElementById("secondEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+        }
+
+        if (thirdEvoCon === pokeEvoImg.name) {
+            document.getElementById("thirdEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+        }
     }
 }
+
+
+
 
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
@@ -287,7 +326,7 @@ function findPokemonInputEmpty(pokemon) {
     }
 }
 
-console.log(pokeData);
+console.log("POKE-DATA", pokeData);
 
 
 function loadMore() {

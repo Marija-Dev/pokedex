@@ -605,3 +605,9 @@ dialog::backdrop {
     display: flex;
     justify-content: space-between;
 }
+
+
+.evo-chain-img {
+    height: 50px;
+    width: 50px;
+}
