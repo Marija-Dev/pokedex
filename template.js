@@ -112,27 +112,33 @@ function getEvoChainImagesTemplate(pokeEvoImg) {
 
 function getEvoChainTemplate(pokemon, index) {
     return `<div id="evoCon" class="evo-con">                
-                <div id="firstEvoCon">
+                <div id="firstEvoCon" class="single-evo-con">
                     <div id="firstEvoImgCon">
                     
                     </div>
 
-                    <p>${pokemon.chain.species.name}</p>
+                    <p class="evo-names">${pokemon.chain.species.name.charAt(0).toUpperCase() + 
+                                           pokemon.chain.species.name.slice(1)}
+                    </p>
                 </div>
 
-                <div id="secondEvoCon">
+                <div id="secondEvoCon" class="single-evo-con">
                     <div id="secondEvoImgCon">
                     
                     </div>
-                    <p>${pokemon.chain.evolves_to[0].species.name}</p>
+                    
+                    <p class="evo-names">${pokemon.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + 
+                                           pokemon.chain.evolves_to[0].species.name.slice(1)}
+                    </p>
                 </div>
 
-                <div id="lastEvoLevel">
+                <div id="thirdEvoCon" class="single-evo-con">
                     <div id="thirdEvoImgCon">
                     
                     </div>
 
-                    <p>${pokemon.chain.evolves_to[0].evolves_to[0]?.species.name}</p>
+                    <p class="evo-names">${pokemon.chain.evolves_to[0].evolves_to[0]?.species.name.charAt(0).toUpperCase() + 
+                                           pokemon.chain.evolves_to[0].evolves_to[0]?.species.name.slice(1)}</p>
                 </div>
             </div>
            `

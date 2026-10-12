@@ -481,7 +481,9 @@ dialog::backdrop {
 }
 
 .nav-con-btn:focus {
-    background-color: #db0c0c;
+    text-shadow: 0 0 10px #e00724;
+    /* background-color: #db0c0c; */
+    border-bottom: 2px solid white;
 }
 
 .separator {
@@ -494,7 +496,7 @@ dialog::backdrop {
     position: relative;
     top: 132px;
     padding: 10px;
-    background-color: rgba(252, 211, 8, 0.575);
+    background-color: rgba(230, 230, 230, 0.575);
     height: 179px;
     display: flex;
     flex-direction: column;
@@ -603,7 +605,11 @@ dialog::backdrop {
 
 .evo-con {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    gap: 20px;
+    width: 100%;
 }
 
 
@@ -611,3 +617,18 @@ dialog::backdrop {
     height: 50px;
     width: 50px;
 }
+
+
+.single-evo-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    /* hyphens: auto; */
+    word-break: break-word;
+
+}
+
+/* .evo-names {
+    width: auto;  
+} */
