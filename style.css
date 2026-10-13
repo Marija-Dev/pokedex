@@ -5,7 +5,7 @@
 
 
 body {
-    background-color: aqua;
+    /* background-color: aqua; */
     margin: 0;
 }
 
@@ -24,6 +24,17 @@ h2 {
     font-family: "GeistPixel-Regular";
 }
 
+header {
+    position: sticky;
+    top: 0;
+    background-color: rgb(243, 21, 12);
+    z-index: 1;
+}
+
+.fullwidth-header {
+    /* background-color: rgb(243, 21, 12); */
+}
+
 .header-content {
     font-family: "GeistPixel-Regular";
     max-width: 1440px;
@@ -32,20 +43,48 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(243, 21, 12);
+
 
 }
 
 .header-text {
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
     font-weight: bold;
-    /* color: rgb(233, 235, 231); */
-    -webkit-text-stroke: 0.5px rgb(97, 137, 15);
+    color: rgb(250, 209, 11);
+    /* -webkit-text-stroke: 1.5px rgb(249, 211, 42); */
+    text-shadow: 4px 4px 4px rgb(19, 11, 250);
+    padding-left: 20px;
+}
+
+.find-pokemon-con {
+    display: flex;
+    gap: 3px;
+    padding-right: 20px;
+
 }
 
 .input {
-    height: 20px;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 190px;
+    border-radius: 10px;
+    /* border-color: black; */
+    border: 1px solid black;
+}
+
+.find-pokemon-btn {
+    height: 30px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.find-pokemon-btn:hover {
+    cursor: pointer;
 }
 
 .thumb-container {
@@ -629,6 +668,20 @@ dialog::backdrop {
 
 }
 
-/* .evo-names {
-    width: auto;  
-} */
+@media (max-width: 430px) {
+    .header-content {
+        flex-direction: column;
+        /* align-items: center; */
+    }
+
+    .header-text {
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+    }
+
+    .find-pokemon-con {
+        margin-bottom: 10px;
+        padding: 0;
+    }
+}
