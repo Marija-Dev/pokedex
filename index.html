@@ -8,6 +8,7 @@
 
 
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./loading-spinner.png">
     <script src="./template.js" defer></script>
     <script src="./script.js" defer></script>
 
@@ -18,7 +19,7 @@
         <div class="fullwidth-header">
             <div class="header-content">
                 <h1 class="header-text">Pokedex</h1>
-                
+
                 <div class="find-pokemon-con">
                     <input id="inputField" class="input" type="search" placeholder="Find pokemon (min 3 chars)">
                     <button onclick="findPokemon()" class="find-pokemon-btn">Go!</button>
@@ -27,35 +28,41 @@
         </div>
     </header>
 
-
-    <div id="spinnerCon" class="spinner-con">
-        <div id="loadingSpinner" class="loading-spinner hidden">
-            <img class="spinner-img" src="./loading-spinner.png" alt="">
-        </div>
-    </div>
-
-    <div id="thumbCon" class="thumb-container">
-        <ul>
-            <li id="singlePokeCard">
-
-            </li>
-        </ul>
-
-
-        <div id="pokemonResultsContainer" class="results-container">
-
+    <main>
+        <div id="spinnerCon" class="spinner-con">
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <img class="spinner-img" src="./loading-spinner.png" alt="">
+            </div>
         </div>
 
+        <div id="thumbCon" class="thumb-container">
+            <ul>
+                <li id="singlePokeCard">
 
-    </div>
+                </li>
+            </ul>
 
-    <div id="loadMoreCon" class="load-more-con">
 
-    </div>
+            <div id="pokemonResultsContainer" class="results-container">
 
-    <dialog id="singlePokemonDialog" class="dialog">
+            </div>
 
-    </dialog>
+
+        </div>
+
+        <div id="loadMoreCon" class="load-more-con">
+
+        </div>
+
+        <dialog id="singlePokemonDialog" class="dialog">
+
+        </dialog>
+
+    </main>
+
+    <footer>
+        <p class="footer-text">Created by Marija Galiot 2026</p>
+    </footer>
 </body>
 
 </html>

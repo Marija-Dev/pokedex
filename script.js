@@ -320,7 +320,7 @@ function findPokemonHelper(pokemon) {
 
 function findPokemonInputEmpty(pokemon) {
     if (pokemon.length === 0) {
-        document.getElementById("pokemonResultsContainer").innerHTML = "Pokemon not found";
+        document.getElementById("pokemonResultsContainer").innerHTML = getNotFoundMessageTemplate();
     }
 }
 

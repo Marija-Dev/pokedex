@@ -149,4 +149,9 @@ function getLoadMoreTemplate() {
     return `<button onclick="loadMore()" id="loadMore" class="load-more-button">Load more</button>`
 }
 
+function getNotFoundMessageTemplate() {
+    return `<div class="not-found-message">Pokemon not found</div>
+           `
+}
+
 
