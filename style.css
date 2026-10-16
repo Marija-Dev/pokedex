@@ -6,7 +6,10 @@
 
 body {
     margin: 0;
-     
+
+    &:has(dialog[open]) {
+        overflow: hidden;
+    }
 }
 
 main {
@@ -369,6 +372,8 @@ dialog::backdrop {
 
 
 
+
+
 .dialog-header {
     display: flex;
     padding-top: 0px;
@@ -416,6 +421,34 @@ dialog::backdrop {
     width: auto;
     object-fit: contain;
     padding-bottom: 50px;
+}
+
+.prev-pokemon {
+    left: 10px;
+}
+
+.next-pokemon {
+    right: 10px;
+}
+
+.prev-pokemon, .next-pokemon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 90px;
+    background-color: #27272891;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    color: white;
+}
+
+.prev-pokemon:hover, .next-pokemon:hover {
+    background-color: gray;
 }
 
 .dialog-type-con {
@@ -642,6 +675,8 @@ footer {
     font-size: 20px;
     font-family: "GeistPixel-Regular";
 }
+
+
 
 @media (max-width: 430px) {
     .header-content {

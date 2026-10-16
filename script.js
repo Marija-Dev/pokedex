@@ -232,54 +232,44 @@ function statsBar(stats, index) {
 
 function showEvoChain(index) {
     let pokemonIndex = evoData[index - 1];
-
-    // let pokemon = pokeData[index - 1];
-
     document.getElementById("dialogInfoCon").innerHTML = "";
 
     for (let index = 0; index < evoChainData.length; index++) {
-
         document.getElementById("dialogInfoCon").innerHTML = getEvoChainTemplate(pokemonIndex);
 
-        // document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokemon);
-
-        if (pokemonIndex.chain.evolves_to[0].evolves_to[0]?.species.name === undefined) {
-            document.getElementById("thirdEvoCon").innerHTML = "";
-        }
+        showEvoChainHelper(pokemonIndex);
     }
 
-    showFirstEvoImg(index);
+    showEvoImg(index);
 }
 
-function showFirstEvoImg(index) {
+function showEvoChainHelper(pokemonIndex) {
+    if (pokemonIndex.chain.evolves_to[0]?.species.name === undefined) {
+        document.getElementById("secondEvoCon").innerHTML = "";
+    }
+
+    if (pokemonIndex.chain.evolves_to[0]?.evolves_to[0]?.species.name === undefined) {
+        document.getElementById("thirdEvoCon").innerHTML = "";
+    }
+}
+
+
+
+function showEvoImg(index) {
     let firstEvoCon = document.getElementById("firstEvoCon").textContent.trim();
     let secondEvoCon = document.getElementById("secondEvoCon").textContent.trim();
     let thirdEvoCon = document.getElementById("thirdEvoCon").textContent.trim();
-    
-    let evoNames = [
-        firstEvoCon, secondEvoCon, thirdEvoCon
-    ];
-
     for (let index = 0; index < evoChain.length; index++) {
-        let evoName = evoNames[index];
         let pokeEvoImg = pokeImg[index];
-
         if (firstEvoCon.toLowerCase() === pokeEvoImg.name) {
             document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
-        }
-
-        if (secondEvoCon.toLowerCase() === pokeEvoImg.name) {
+        } else if (secondEvoCon.toLowerCase() === pokeEvoImg.name) {
             document.getElementById("secondEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
-        }
-
-        if (thirdEvoCon.toLowerCase() === pokeEvoImg.name) {
+        } else if (thirdEvoCon.toLowerCase() === pokeEvoImg.name) {
             document.getElementById("thirdEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
         }
     }
 }
-
-
-
 
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
@@ -355,6 +345,17 @@ function showLoadMoreButton() {
     let loadMoreCon = document.getElementById("loadMoreCon");
 
     loadMoreCon.innerHTML = getLoadMoreTemplate();
+}
+
+
+function showNextPokemon(id) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+    let pokemonID = pokemon.id;
+    let nextBtn = document.getElementById("nextPokemonBtn");
+    let nextPokemon = pokemon.id++;
+
+    singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(nextPokemon);
+
 }
 
 

@@ -27,7 +27,9 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <div class="dialog-poke-img-con ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
+                    <button onclick="showPrevPokemon()" id="prevPokemonBtn" class="prev-pokemon"><</button>
                     <img class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
+                    <button onclick="showNextPokemon(${pokemon.id})" id="nextPokemonBtn" class="next-pokemon">></button>
                 </div>
 
                 <div class="dialog-type-con">
@@ -127,8 +129,8 @@ function getEvoChainTemplate(pokemon, index) {
                     
                     </div>
                     
-                    <p class="evo-names">${pokemon.chain.evolves_to[0].species.name.charAt(0).toUpperCase() + 
-                                           pokemon.chain.evolves_to[0].species.name.slice(1)}
+                    <p class="evo-names">${pokemon.chain.evolves_to[0]?.species.name.charAt(0).toUpperCase() + 
+                                           pokemon.chain.evolves_to[0]?.species.name.slice(1)}
                     </p>
                 </div>
 
@@ -137,8 +139,9 @@ function getEvoChainTemplate(pokemon, index) {
                     
                     </div>
 
-                    <p class="evo-names">${pokemon.chain.evolves_to[0].evolves_to[0]?.species.name.charAt(0).toUpperCase() + 
-                                           pokemon.chain.evolves_to[0].evolves_to[0]?.species.name.slice(1)}</p>
+                    <p class="evo-names">${pokemon.chain.evolves_to[0]?.evolves_to[0]?.species.name.charAt(0).toUpperCase() + 
+                                           pokemon.chain.evolves_to[0]?.evolves_to[0]?.species.name.slice(1)}
+                    </p>
                 </div>
             </div>
            `
