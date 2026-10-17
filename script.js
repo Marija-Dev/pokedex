@@ -343,19 +343,31 @@ function hideLoadMoreBtn(nextIndex) {
 
 function showLoadMoreButton() {
     let loadMoreCon = document.getElementById("loadMoreCon");
-
     loadMoreCon.innerHTML = getLoadMoreTemplate();
 }
 
 
+let currentPokeIndex = 0;
+
 function showNextPokemon(id) {
-    let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let pokemonID = pokemon.id;
-    let nextBtn = document.getElementById("nextPokemonBtn");
-    let nextPokemon = pokemon.id++;
+    let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
+    currentPokeIndex = pokemonIndex;
 
-    singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(nextPokemon);
+    if (currentPokeIndex < pokeData.length - 1) {
+        currentPokeIndex++;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
+        showMainInfo(id + 1);
+    }
 
+    nextPokemonLoop(id);
 }
 
+function nextPokemonLoop(id) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
 
+    if (pokemon.id === pokeData.length) {
+        currentPokeIndex = 0;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
+        showMainInfo(id - 299);
+    }
+}
