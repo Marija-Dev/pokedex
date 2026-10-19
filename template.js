@@ -27,7 +27,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <div class="dialog-poke-img-con ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
-                    <button onclick="showPrevPokemon()" id="prevPokemonBtn" class="prev-pokemon"><</button>
+                    <button onclick="showPrevPokemon(${pokemon.id})" id="prevPokemonBtn" class="prev-pokemon"><</button>
                     <img class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
                     <button onclick="showNextPokemon(${pokemon.id})" id="nextPokemonBtn" class="next-pokemon">></button>
                 </div>
