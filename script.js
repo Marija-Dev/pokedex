@@ -151,12 +151,18 @@ function openSinglePokemonDialog(id) {
     singlePokeDialog.showModal();
     singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokemon);
 
+
+    hideDialogUndefinedTypes(id);
+    showMainInfo(id);
+}
+
+function hideDialogUndefinedTypes(id) {
+    let pokemon = pokeData.find(pokemon => pokemon.id === id);
+
     if (pokemon.types[1] === undefined) {
         document.getElementById(`dialogSecondType-${pokemon.id}`).innerHTML = "";
         document.getElementById(`dialogSecondType-${pokemon.id}`).style = "border: none";
     }
-
-    showMainInfo(id);
 }
 
 function closeDialog() {
@@ -352,14 +358,15 @@ function showLoadMoreButton() {
 function showNextPokemon(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
     let singlePokeCard = document.getElementById("singlePokeCard");
+    let pokemon = pokeData[pokemonIndex];
     currentPokeIndex = pokemonIndex;
 
     if (currentPokeIndex < singlePokeCard.children.length - 1) {
         currentPokeIndex++;
         singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
         showMainInfo(id + 1);
+        hideDialogUndefinedTypes(id + 1);
     }
-
     nextLoop(id);
 }
 
@@ -384,6 +391,7 @@ function showPrevPokemon(id) {
         currentPokeIndex--;
         singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
         showMainInfo(id - 1);
+        hideDialogUndefinedTypes(id - 1);
     }
 
     prevLoop(id);
