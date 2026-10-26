@@ -212,6 +212,13 @@ header {
 
 .load-more-button {
     margin-bottom: 20px;
+    font-family: "GeistPixel-Regular";
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+
+
+
 }
 
 
@@ -267,8 +274,8 @@ header {
     background: linear-gradient(135deg, #6390F0 30%, #C22E28 70%);
 }
 
-.rock.ground {
-    background: linear-gradient(135deg, #B6A136 30%, #E2BF65 70%);
+.ground.rock {
+    background: linear-gradient(135deg, #E2BF65 30%, #B6A136 70%);
 }
 
 .water.psychic {
@@ -283,6 +290,191 @@ header {
     background: linear-gradient(135deg, #6390F0 30%, #96D9D6 70%);
 }
 
+.water.poison {
+    background: linear-gradient(135deg, #6390F0 30%, #A33EA1 70%);
+}
+
+.ghost.poison {
+    background: linear-gradient(135deg, #735797 30%, #A33EA1 70%);
+}
+
+.grass.psychic {
+    background: linear-gradient(135deg, #7AC74C 30%, #F95587 70%);
+}
+
+.psychic.fairy {
+    background: linear-gradient(135deg, #F95587 30%, #D685AD 70%);
+}
+
+.ice.psychic {
+    background: linear-gradient(135deg, #96D9D6 30%, #F95587 70%);
+}
+
+.water.flying {
+    background: linear-gradient(135deg, #6390F0 30%, #A890F0 70%);
+}
+
+.rock.water {
+    background: linear-gradient(135deg, #B6A136 30%, #6390F0 70%);
+}
+
+.rock.flying {
+    background: linear-gradient(135deg, #B6A136 30%, #A890F0 70%);
+}
+
+.ice.flying {
+    background: linear-gradient(135deg, #96D9D6 30%, #A890F0 70%);
+}
+
+.electric.flying {
+    background: linear-gradient(135deg, #F7D02C 30%, #A890F0 70%);
+}
+
+.dragon.flying {
+    background: linear-gradient(135deg, #6F35FC 30%, #A890F0 70%);
+}
+
+.water.electric {
+    background: linear-gradient(135deg, #6390F0 30%, #F7D02C 70%);
+}
+
+.fairy.flying {
+    background: linear-gradient(135deg, #D685AD 30%, #A890F0 70%);
+}
+
+.psychic.flying {
+    background: linear-gradient(135deg, #F95587 30%, #A890F0 70%);
+}
+
+.water.fairy {
+    background: linear-gradient(135deg, #6390F0 30%, #D685AD 70%);
+}
+
+.grass.flying {
+    background: linear-gradient(135deg, #7AC74C 30%, #A890F0 70%);
+}
+
+.water.ground {
+    background: linear-gradient(135deg, #6390F0 30%, #E2BF65 70%);
+}
+
+.dark.flying {
+    background: linear-gradient(135deg, #705746 30%, #A890F0 70%);
+}
+
+.normal.psychic {
+    background: linear-gradient(135deg, #A8A77A 30%, #F95587 70%);
+}
+
+.bug.steel {
+    background: linear-gradient(135deg, #A6B91A 30%, #B7B7CE 70%);
+}
+
+.ground.flying {
+    background: linear-gradient(135deg, #E2BF65 30%, #A890F0 70%);
+}
+
+.steel.ground {
+    background: linear-gradient(135deg, #B7B7CE 30%, #E2BF65 70%);
+}
+
+.bug.rock {
+    background: linear-gradient(135deg, #A6B91A 30%, #B6A136 70%);
+}
+
+.bug.fighting {
+    background: linear-gradient(135deg, #A6B91A 30%, #C22E28 70%);
+}
+
+.dark.ice {
+    background: linear-gradient(135deg, #705746 30%, #96D9D6 70%);
+}
+
+.fire.rock {
+    background: linear-gradient(135deg, #EE8130 30%, #B6A136 70%);
+}
+
+.ice.ground {
+    background: linear-gradient(135deg, #96D9D6 30%, #E2BF65 70%);
+}
+
+.dark.fire {
+    background: linear-gradient(135deg, #705746 30%, #EE8130 70%);
+}
+
+.water.dragon {
+    background: linear-gradient(135deg, #6390F0 30%, #6F35FC 70%);
+}
+
+.rock.dark {
+    background: linear-gradient(135deg, #B6A136 30%, #705746 70%);
+}
+
+.psychic.grass {
+    background: linear-gradient(135deg, #F95587 30%, #7AC74C 70%);
+}
+
+.fire.fighting {
+    background: linear-gradient(135deg, #EE8130 30%, #C22E28 70%);
+}
+
+.water.grass {
+    background: linear-gradient(135deg, #6390F0 30%, #7AC74C 70%);
+}
+
+.grass.dark {
+    background: linear-gradient(135deg, #7AC74C 30%, #705746 70%);
+}
+
+.psychic.fairy {
+    background: linear-gradient(135deg, #F95587 30%, #D685AD 70%);
+}
+
+.bug.water {
+    background: linear-gradient(135deg, #A6B91A 30%, #6390F0 70%);
+}
+
+.grass.fighting {
+    background: linear-gradient(135deg, #7AC74C 30%, #C22E28 70%);
+}
+
+.bug.ground {
+    background: linear-gradient(135deg, #A6B91A 30%, #E2BF65 70%);
+}
+
+.bug.ghost {
+    background: linear-gradient(135deg, #A6B91A 30%, #735797 70%);
+}
+
+.rock.ground {
+    background: linear-gradient(135deg, #B6A136 30%, #E2BF65 70%);
+}
+
+.grass.psychic {
+    background: linear-gradient(135deg, #7AC74C 30%, #F95587 70%);
+}
+
+.ground.rock {
+    background: linear-gradient(135deg, #E2BF65 30%, #B6A136 70%);
+}
+
+.water.rock {
+    background: linear-gradient(135deg, #6390F0 30%, #B6A136 70%);
+}
+
+.steel.flying {
+    background: linear-gradient(135deg, #B7B7CE 30%, #A890F0 70%);
+}
+
+.rock.ground {
+    background: linear-gradient(135deg, #B6A136 30%, #E2BF65 70%);
+}
+
+.psychic.grass {
+    background: linear-gradient(135deg, #F95587 30%, #7AC74C 70%);
+}
+
+
 
 
 
@@ -291,8 +483,6 @@ header {
 
 .grass {
     background-color: #7AC74C;
-    /* background-color: color(display-p3 0 1 0); */
-    /* background: linear-gradient(135deg, #7AC74C 30%, #A33EA1 70%); */
 }
 
 .fire {
@@ -351,6 +541,22 @@ header {
     background-color: #96D9D6;
 }
 
+.ghost {
+    background-color: #735797;
+}
+
+.fairy {
+    background-color: #D685AD;
+}
+
+.dragon {
+    background-color: #6F35FC;
+}
+
+.dark {
+    background-color: #705746;
+}
+
 
 
 dialog {
@@ -388,7 +594,7 @@ dialog::backdrop {
 .close-dialog-x {
     position: absolute;
     right: 0px;
-    top: 0px;
+    top: 18px;
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -449,6 +655,7 @@ dialog::backdrop {
 
 .prev-pokemon:hover, .next-pokemon:hover {
     background-color: gray;
+    cursor: pointer;
 }
 
 .dialog-type-con {
@@ -656,6 +863,11 @@ dialog::backdrop {
     margin-top: 20px;
     font-family: "GeistPixel-Regular";
     font-weight: bold;
+}
+
+.pokemon-not-found {
+    height: 300px;
+    width: 300px;
 }
 
 

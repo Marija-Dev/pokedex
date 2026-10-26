@@ -10,7 +10,7 @@ const evoChainData = [];
 const evoData = [];
 const evoChain = [];
 const singlePokeDialog = document.getElementById("singlePokemonDialog");
-let currentIndex = 20;
+let currentIndex = 40;
 let singlePokeCard = document.getElementById("singlePokeCard");
 let maxStats = [255, 180, 230, 194, 230, 180];
 let currentPokeIndex = 0;
@@ -128,7 +128,7 @@ console.log("PokeImg", pokeImg);
 
 
 function renderPokemon(promises) {
-    for (let index = 0; index < promises.length - 280; index++) {
+    for (let index = 0; index < promises.length - 260; index++) {
         let pokemon = promises[index];
 
         singlePokeCard.innerHTML += getSinglePokemonTemplate(pokemon);
@@ -242,14 +242,13 @@ function showEvoChain(index) {
 
     for (let index = 0; index < evoChainData.length; index++) {
         document.getElementById("dialogInfoCon").innerHTML = getEvoChainTemplate(pokemonIndex);
-
-        showEvoChainHelper(pokemonIndex);
+        evoChainUndefined(pokemonIndex);
     }
 
     showEvoImg(index);
 }
 
-function showEvoChainHelper(pokemonIndex) {
+function evoChainUndefined(pokemonIndex) {
     if (pokemonIndex.chain.evolves_to[0]?.species.name === undefined) {
         document.getElementById("secondEvoCon").innerHTML = "";
     }
@@ -261,21 +260,50 @@ function showEvoChainHelper(pokemonIndex) {
 
 
 
-function showEvoImg(index) {
+function showEvoImg() {
     let firstEvoCon = document.getElementById("firstEvoCon").textContent.trim();
     let secondEvoCon = document.getElementById("secondEvoCon").textContent.trim();
     let thirdEvoCon = document.getElementById("thirdEvoCon").textContent.trim();
-    for (let index = 0; index < evoChain.length; index++) {
+
+    for (let index = 0; index < pokeImg.length; index++) {
         let pokeEvoImg = pokeImg[index];
-        if (firstEvoCon.toLowerCase() === pokeEvoImg.name) {
-            document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
-        } else if (secondEvoCon.toLowerCase() === pokeEvoImg.name) {
-            document.getElementById("secondEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
-        } else if (thirdEvoCon.toLowerCase() === pokeEvoImg.name) {
-            document.getElementById("thirdEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
-        }
+
+        showEvoImgHelper(firstEvoCon, secondEvoCon, thirdEvoCon, pokeEvoImg);
+
+        console.log("secondEvoCon", secondEvoCon);
+
+    }
+
+    imgNotAvailable();
+}
+
+function showEvoImgHelper(firstEvoCon, secondEvoCon, thirdEvoCon, pokeEvoImg) {
+    if (firstEvoCon.toLowerCase() === pokeEvoImg.name) {
+        document.getElementById("firstEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+    } else if (secondEvoCon.toLowerCase() === pokeEvoImg.name) {
+        document.getElementById("secondEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+    } else if (thirdEvoCon.toLowerCase() === pokeEvoImg.name) {
+        document.getElementById("thirdEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
+    }
+
+
+}
+
+function imgNotAvailable() {
+    if (document.getElementById("firstEvoImgCon")?.innerHTML.trim() === "") {
+        document.getElementById("firstEvoCon").innerHTML = "";
+    }
+
+    if (document.getElementById("secondEvoImgCon")?.innerHTML.trim() === "") {
+        document.getElementById("secondEvoCon").innerHTML = "";
+    }
+
+    if (document.getElementById("thirdEvoImgCon")?.innerHTML.trim() === "") {
+        document.getElementById("thirdEvoCon").innerHTML = "";
     }
 }
+
+
 
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
@@ -291,7 +319,7 @@ function findPokemon() {
 
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
-    hideLoadMoreBtn(currentIndex + 10);
+    hideLoadMoreBtn(currentIndex + 20);
 }
 
 function findSinglePokemon(pokemon) {
@@ -325,7 +353,7 @@ console.log("POKE-DATA", pokeData);
 
 function loadMore() {
     let limit = pokeData.length;
-    let addPokemon = 10;
+    let addPokemon = 20;
     let nextIndex = currentIndex + addPokemon;
 
     for (let index = currentIndex; index < nextIndex && index < limit; index++) {
@@ -402,10 +430,11 @@ function prevLoop(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let singlePokeCard = document.getElementById("singlePokeCard");
 
-    if (currentPokeIndex === 0) {
+    if (pokemon.id === 1) {
         currentPokeIndex = singlePokeCard.children.length - 1;
         singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
-        showMainInfo(id);
+        showMainInfo(currentPokeIndex + 1);
+        hideDialogUndefinedTypes(currentPokeIndex + 1);
     }
 }
 

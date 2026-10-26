@@ -6,12 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
 
-
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./loading-spinner.png">
+
     <script src="./template.js" defer></script>
     <script src="./script.js" defer></script>
-
 </head>
 
 <body onload="init()">
@@ -31,7 +30,7 @@
     <main>
         <div id="spinnerCon" class="spinner-con">
             <div id="loadingSpinner" class="loading-spinner hidden">
-                <img class="spinner-img" src="./loading-spinner.png" alt="">
+                <img class="spinner-img" src="./loading-spinner.png" alt="Loading spinner">
             </div>
         </div>
 
@@ -42,22 +41,18 @@
                 </li>
             </ul>
 
-
             <div id="pokemonResultsContainer" class="results-container">
 
             </div>
-
-
         </div>
 
         <div id="loadMoreCon" class="load-more-con">
 
         </div>
 
-        <dialog id="singlePokemonDialog" class="dialog" closedby="any">
+        <dialog id="singlePokemonDialog" aria-label="dialog" class="dialog" closedby="any">
 
         </dialog>
-
     </main>
 
     <footer>

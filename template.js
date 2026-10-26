@@ -1,6 +1,7 @@
 // @ts-nocheck
 function getSinglePokemonTemplate(pokemon) {
-    return `<button onclick="openSinglePokemonDialog(${pokemon.id})" class="thumbnail-buttons ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
+    return `<button onclick="openSinglePokemonDialog(${pokemon.id})" aria-label="open_dialog"
+                    class="thumbnail-buttons ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
                 <div class="pokemon-name-con">
                     <h2># ${pokemon.id}</h2>
                     <h2>${pokemon.forms[0].name.charAt(0).toUpperCase() + pokemon.forms[0].name.slice(1)}</h2>
@@ -19,17 +20,17 @@ function getSinglePokemonTemplate(pokemon) {
 }
 
 function getSinglePokemonDialogTemplate(pokemon) {
-    return `<main class"dialog-main">
+    return `<main>
                 <div class="dialog-header">
                     <h2># ${pokemon.id}</h2>
                     <h2 class="dialog-poke-name">${pokemon.forms[0].name.charAt(0).toUpperCase() + pokemon.forms[0].name.slice(1)}</h2>
-                    <button data-id="close-dialog-button" onclick="closeDialog()" class="close-dialog-x">X</button>
+                    <button data-id="close-dialog-button" aria-label="close_dialog" onclick="closeDialog()" class="close-dialog-x">X</button>
                 </div>
 
                 <div class="dialog-poke-img-con ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
-                    <button onclick="showPrevPokemon(${pokemon.id})" id="prevPokemonBtn" class="prev-pokemon"><</button>
+                    <button onclick="showPrevPokemon(${pokemon.id})" aria-label="prev_pokemon" id="prevPokemonBtn" class="prev-pokemon"><</button>
                     <img class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
-                    <button onclick="showNextPokemon(${pokemon.id})" id="nextPokemonBtn" class="next-pokemon">></button>
+                    <button onclick="showNextPokemon(${pokemon.id})" aria-label="next_pokemon" id="nextPokemonBtn" class="next-pokemon">></button>
                 </div>
 
                 <div class="dialog-type-con">
@@ -38,22 +39,17 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <nav class="nav-con">
-                    <button onclick="showMainInfo(${pokemon.id})" id="mainInfo" class="nav-con-btn">Main</button>
+                    <button onclick="showMainInfo(${pokemon.id})" aria-label="show_main_info" id="mainInfo" class="nav-con-btn">Main</button>
                     <div class="separator"></div>
-                    <button onclick="showStatsInfo(${pokemon.id})" id="statsInfo" class="nav-con-btn">Stats</button>
+                    <button onclick="showStatsInfo(${pokemon.id})" aria-label="show_stats_info" id="statsInfo" class="nav-con-btn">Stats</button>
                     <div class="separator"></div>
-                    <button onclick="showEvoChain(${pokemon.id})" id="evoChainInfo" class="nav-con-btn">Evo Chain</button>
+                    <button onclick="showEvoChain(${pokemon.id})" aria-label="show_evo_chain" id="evoChainInfo" class="nav-con-btn">Evo Chain</button>
                 </nav>
 
                 <div id="dialogInfoCon" class="dialog-info-con">
-                   
+                
                 </div>
-
-                
-                    
-                
             </main>
-    
     `
 }
 
@@ -149,11 +145,13 @@ function getEvoChainTemplate(pokemon, index) {
 
 
 function getLoadMoreTemplate() {
-    return `<button onclick="loadMore()" id="loadMore" class="load-more-button">Load more</button>`
+    return `<button onclick="loadMore()" id="loadMore" aria-label="load_more_pokemon" class="load-more-button">Show more pokemon</button>`
 }
 
 function getNotFoundMessageTemplate() {
-    return `<div class="not-found-message">Pokemon not found</div>
+    return `<div class="not-found-message">
+                <img class="pokemon-not-found" src="./pokemon-not-found.png" alt="Pokemon not found">
+            </div>
            `
 }
 
