@@ -1,6 +1,6 @@
 // @ts-nocheck
 function getSinglePokemonTemplate(pokemon) {
-    return `<button onclick="openSinglePokemonDialog(${pokemon.id})" aria-label="open_dialog"
+    return `<button data-id="card" onclick="openSinglePokemonDialog(${pokemon.id})" aria-label="open_dialog"
                     class="thumbnail-buttons ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
                 <div class="pokemon-name-con">
                     <h2># ${pokemon.id}</h2>
@@ -8,7 +8,7 @@ function getSinglePokemonTemplate(pokemon) {
                 </div>
 
                 <div class="poke-img-con">
-                    <img class="poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
+                    <img data-id="card-image" class="poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
                 </div>
 
                 <div class="type-con">
@@ -20,7 +20,7 @@ function getSinglePokemonTemplate(pokemon) {
 }
 
 function getSinglePokemonDialogTemplate(pokemon) {
-    return `<main>
+    return `<main data-id="overlay-pokemon-name">
                 <div class="dialog-header">
                     <h2># ${pokemon.id}</h2>
                     <h2 class="dialog-poke-name">${pokemon.forms[0].name.charAt(0).toUpperCase() + pokemon.forms[0].name.slice(1)}</h2>
@@ -28,9 +28,9 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 </div>
 
                 <div class="dialog-poke-img-con ${pokemon.types[0].type.name} ${pokemon.types[1]?.type.name}">
-                    <button onclick="showPrevPokemon(${pokemon.id})" aria-label="prev_pokemon" id="prevPokemonBtn" class="prev-pokemon"><</button>
-                    <img class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
-                    <button onclick="showNextPokemon(${pokemon.id})" aria-label="next_pokemon" id="nextPokemonBtn" class="next-pokemon">></button>
+                    <button data-id="prev-button" onclick="showPrevPokemon(${pokemon.id})" aria-label="prev_pokemon" id="prevPokemonBtn" class="prev-pokemon"><</button>
+                    <img data-id="dialog-image" class="dialog-poke-img" src="${pokemon.sprites.other["dream_world"].front_default}">
+                    <button data-id="next-button" onclick="showNextPokemon(${pokemon.id})" aria-label="next_pokemon" id="nextPokemonBtn" class="next-pokemon">></button>
                 </div>
 
                 <div class="dialog-type-con">
@@ -40,9 +40,13 @@ function getSinglePokemonDialogTemplate(pokemon) {
 
                 <nav class="nav-con">
                     <button onclick="showMainInfo(${pokemon.id})" aria-label="show_main_info" id="mainInfo" class="nav-con-btn">Main</button>
+
                     <div class="separator"></div>
+
                     <button onclick="showStatsInfo(${pokemon.id})" aria-label="show_stats_info" id="statsInfo" class="nav-con-btn">Stats</button>
+
                     <div class="separator"></div>
+
                     <button onclick="showEvoChain(${pokemon.id})" aria-label="show_evo_chain" id="evoChainInfo" class="nav-con-btn">Evo Chain</button>
                 </nav>
 
@@ -50,7 +54,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 
                 </div>
             </main>
-    `
+           `
 }
 
 function getMainInfoTemplate(pokemon) {
@@ -79,8 +83,6 @@ function getAbilitiesTemplate(pokemon, index) {
            `
 }
 
-
-
 function getStatsInfoTemplate(pokemon, index) {
     return `<div class="stats-con">
                 <div class="stats-name-con"><strong>
@@ -97,16 +99,13 @@ function getStatsInfoTemplate(pokemon, index) {
                     </div>
                 </div>
             </div>
-            `
-}
-
-
-function getEvoChainImagesTemplate(pokeEvoImg) {
-    return `
-            <img class="evo-chain-img" src="${pokeEvoImg.url}">
            `
 }
 
+function getEvoChainImagesTemplate(pokeEvoImg) {
+    return `<img class="evo-chain-img" src="${pokeEvoImg.url}">
+           `
+}
 
 function getEvoChainTemplate(pokemon, index) {
     return `<div id="evoCon" class="evo-con">                
@@ -143,13 +142,15 @@ function getEvoChainTemplate(pokemon, index) {
            `
 }
 
-
 function getLoadMoreTemplate() {
-    return `<button onclick="loadMore()" id="loadMore" aria-label="load_more_pokemon" class="load-more-button">Show more pokemon</button>`
+    return `<button data-id="load-more-button" onclick="loadMore()" id="loadMore" aria-label="load_more_pokemon" class="load-more-button">
+                Show more pokemon
+            </button>
+           `
 }
 
 function getNotFoundMessageTemplate() {
-    return `<div class="not-found-message">
+    return `<div data-id="not-found" class="not-found-message">
                 <img class="pokemon-not-found" src="./pokemon-not-found.png" alt="Pokemon not found">
             </div>
            `

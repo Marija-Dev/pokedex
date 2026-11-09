@@ -20,14 +20,19 @@
                 <h1 class="header-text">Pokedex</h1>
 
                 <div class="find-pokemon-con">
-                    <input id="inputField" class="input" type="search" placeholder="Find pokemon (min 3 chars)">
-                    <button onclick="findPokemon()" class="find-pokemon-btn">Go!</button>
+                    <input data-id="search-input" id="inputField" class="input" type="search"
+                        placeholder="Find pokemon (min 3 chars)">
+
+                    <button data-id="search-button" onclick="findPokemon()" class="find-pokemon-btn"
+                        aria-label="search-pokemon">
+                        Go!
+                    </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main data-id="content">
         <div id="spinnerCon" class="spinner-con">
             <div id="loadingSpinner" class="loading-spinner hidden">
                 <img class="spinner-img" src="./loading-spinner.png" alt="Loading spinner">
@@ -50,13 +55,13 @@
 
         </div>
 
-        <dialog id="singlePokemonDialog" aria-label="dialog" class="dialog" closedby="any">
+        <dialog data-id="dialog" id="singlePokemonDialog" aria-label="dialog" class="dialog" closedby="any">
 
         </dialog>
     </main>
 
     <footer>
-        <p class="footer-text">Created by Marija Galiot 2026</p>
+        <p class="footer-text">Created with ♥️ by Marija Galiot 2026</p>
     </footer>
 </body>
 

@@ -15,9 +15,6 @@ let singlePokeCard = document.getElementById("singlePokeCard");
 let maxStats = [255, 180, 230, 194, 230, 180];
 let currentPokeIndex = 0;
 
-console.log("SinglePokeDialog", singlePokeDialog);
-
-
 function init() {
     showLoadingSpinner();
 }
@@ -33,62 +30,6 @@ function showLoadingSpinner() {
     fetchPokemon();
     fetchEvoChain();
 }
-
-// NACH UNTEN VERSCHIEBEN 
-async function fetchEvoChain() {
-    let response = await fetch(EVO_CHAIN_URL);
-    let responseToJson = await response.json();
-
-    for (let index = 0; index < responseToJson.results.length; index++) {
-        evoSubUrl.push(
-            {
-                url: responseToJson.results[index].url,
-            }
-        )
-    }
-
-    console.log("Evo Sub Url:", evoSubUrl);
-
-    fetchEvoChainSubUrl();
-}
-
-async function fetchEvoChainSubUrl() {
-    let evoChainSubUrlArray = evoSubUrl.map(item => item.url);
-    let promises = await Promise.all(evoChainSubUrlArray.map(async url => {
-        return (await fetch(url)).json();
-    }));
-
-    for (let index = 0; index < promises.length; index++) {
-        evoChainData.push(promises[index]);
-    }
-
-
-    console.log("64:", evoChainData);
-
-
-    fetchEvolutionData();
-}
-
-async function fetchEvolutionData() {
-    let evoDataArray = evoChainData.map(item => item.evolution_chain.url);
-    let promises = await Promise.all(evoDataArray.map(async url => {
-        return (await fetch(url)).json();
-    }));
-
-    for (let index = 0; index < promises.length; index++) {
-        evoData.push(promises[index]);
-        evoChain.push(promises[index].id + " " +
-            (promises[index].chain.species.name) + " " +
-            (promises[index].chain.evolves_to[0]?.species.name) + " " +
-            (promises[index].chain.evolves_to[0]?.evolves_to[0]?.species.name))
-    }
-}
-
-console.log("Evo Chain Data", evoChainData);
-console.log("EvoChain", evoChain);
-
-console.log("88 EVO-DATA:", evoData);
-
 
 async function fetchPokemon() {
     let response = await fetch(BASE_URL);
@@ -114,18 +55,52 @@ async function fetchSubURLs() {
     for (let index = 0; index < promises.length; index++) {
         pokeData.push(promises[index]);
         pokeImg.push({ name: promises[index].name, url: promises[index].sprites.other["dream_world"]["front_default"] });
-
     }
 
     renderPokemon(promises);
 }
 
-console.log("subUrl:", subUrl);
+async function fetchEvoChain() {
+    let response = await fetch(EVO_CHAIN_URL);
+    let responseToJson = await response.json();
 
-console.log("PokeImg", pokeImg);
+    for (let index = 0; index < responseToJson.results.length; index++) {
+        evoSubUrl.push(
+            {
+                url: responseToJson.results[index].url,
+            }
+        )
+    }
+    fetchEvoChainSubUrl();
+}
 
+async function fetchEvoChainSubUrl() {
+    let evoChainSubUrlArray = evoSubUrl.map(item => item.url);
+    let promises = await Promise.all(evoChainSubUrlArray.map(async url => {
+        return (await fetch(url)).json();
+    }));
 
+    for (let index = 0; index < promises.length; index++) {
+        evoChainData.push(promises[index]);
+    }
 
+    fetchEvolutionData();
+}
+
+async function fetchEvolutionData() {
+    let evoDataArray = evoChainData.map(item => item.evolution_chain.url);
+    let promises = await Promise.all(evoDataArray.map(async url => {
+        return (await fetch(url)).json();
+    }));
+
+    for (let index = 0; index < promises.length; index++) {
+        evoData.push(promises[index]);
+        evoChain.push(promises[index].id + " " +
+            (promises[index].chain.species.name) + " " +
+            (promises[index].chain.evolves_to[0]?.species.name) + " " +
+            (promises[index].chain.evolves_to[0]?.evolves_to[0]?.species.name))
+    }
+}
 
 function renderPokemon(promises) {
     for (let index = 0; index < promises.length - 260; index++) {
@@ -144,13 +119,11 @@ function hideUndefinedTypes(pokemon) {
     }
 }
 
-
 function openSinglePokemonDialog(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
 
     singlePokeDialog.showModal();
     singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokemon);
-
 
     hideDialogUndefinedTypes(id);
     showMainInfo(id);
@@ -169,18 +142,15 @@ function closeDialog() {
     singlePokeDialog.close();
 }
 
-
 function showMainInfo(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let dialogInfoCon = document.getElementById("dialogInfoCon");
-
 
     dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon);
 
     calculateHeightAndWeight(pokemon);
     showAbilities(pokemon);
 }
-
 
 function calculateHeightAndWeight(pokemon) {
     let height = document.getElementById("pokemonHeight");
@@ -209,8 +179,6 @@ function showAbilities(pokemon) {
     }
 }
 
-
-
 function showStatsInfo(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let allStats = pokemon.stats;
@@ -223,8 +191,6 @@ function showStatsInfo(id) {
         statsBar(stats, index);
     }
 }
-
-
 
 function statsBar(stats, index) {
     let singleStat = maxStats[index];
@@ -258,8 +224,6 @@ function evoChainUndefined(pokemonIndex) {
     }
 }
 
-
-
 function showEvoImg() {
     let firstEvoCon = document.getElementById("firstEvoCon").textContent.trim();
     let secondEvoCon = document.getElementById("secondEvoCon").textContent.trim();
@@ -269,9 +233,6 @@ function showEvoImg() {
         let pokeEvoImg = pokeImg[index];
 
         showEvoImgHelper(firstEvoCon, secondEvoCon, thirdEvoCon, pokeEvoImg);
-
-        console.log("secondEvoCon", secondEvoCon);
-
     }
 
     imgNotAvailable();
@@ -285,8 +246,6 @@ function showEvoImgHelper(firstEvoCon, secondEvoCon, thirdEvoCon, pokeEvoImg) {
     } else if (thirdEvoCon.toLowerCase() === pokeEvoImg.name) {
         document.getElementById("thirdEvoImgCon").innerHTML = getEvoChainImagesTemplate(pokeEvoImg);
     }
-
-
 }
 
 function imgNotAvailable() {
@@ -303,8 +262,6 @@ function imgNotAvailable() {
     }
 }
 
-
-
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
     let pokemon = pokeData.filter(pokemon => pokemon.forms[0].name.toLowerCase().startsWith(inputValue));
@@ -313,10 +270,8 @@ function findPokemon() {
 
     if (inputValue.length < 3) {
         renderPokemon(pokeData);
-
         return
     }
-
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
     hideLoadMoreBtn(currentIndex + 20);
@@ -325,9 +280,7 @@ function findPokemon() {
 function findSinglePokemon(pokemon) {
     if (pokemon.length === 1) {
         document.getElementById("pokemonResultsContainer").innerHTML = getSinglePokemonTemplate(pokemon[0]);
-
     }
-
 }
 
 function findPokemonHelper(pokemon) {
@@ -347,9 +300,6 @@ function findPokemonInputEmpty(pokemon) {
         document.getElementById("pokemonResultsContainer").innerHTML = getNotFoundMessageTemplate();
     }
 }
-
-console.log("POKE-DATA", pokeData);
-
 
 function loadMore() {
     let limit = pokeData.length;
@@ -380,9 +330,6 @@ function showLoadMoreButton() {
     loadMoreCon.innerHTML = getLoadMoreTemplate();
 }
 
-
-
-
 function showNextPokemon(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
     let singlePokeCard = document.getElementById("singlePokeCard");
@@ -397,7 +344,6 @@ function showNextPokemon(id) {
     }
     nextLoop(id);
 }
-
 
 function nextLoop(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
@@ -437,6 +383,3 @@ function prevLoop(id) {
         hideDialogUndefinedTypes(currentPokeIndex + 1);
     }
 }
-
-
-

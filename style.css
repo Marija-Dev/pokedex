@@ -3,7 +3,6 @@
     src: url("./fonts/Geist_Pixel/GeistPixel-Regular-VariableFont_ELSH.ttf");
 }
 
-
 body {
     margin: 0;
 
@@ -38,7 +37,6 @@ header {
     z-index: 1;
 }
 
-
 .header-content {
     font-family: "GeistPixel-Regular";
     max-width: 1440px;
@@ -55,7 +53,6 @@ header {
     font-size: clamp(1.8rem, 8vw, 2.8rem);
     font-weight: bold;
     color: rgb(250, 209, 11);
-    /* -webkit-text-stroke: 1.5px rgb(249, 211, 42); */
     text-shadow: 4px 4px 4px rgb(19, 11, 250);
     padding-left: 20px;
 }
@@ -64,7 +61,6 @@ header {
     display: flex;
     gap: 3px;
     padding-right: 20px;
-
 }
 
 .input {
@@ -74,7 +70,6 @@ header {
     height: 30px;
     width: 190px;
     border-radius: 10px;
-    /* border-color: black; */
     border: 1px solid black;
 }
 
@@ -109,12 +104,7 @@ header {
     cursor: pointer;
     height: 350px;
     width: 260px;
-
-
-    animation: rotate 4s linear infinite, opacityChange 3s infinite alternate;
-
 }
-
 
 .spinner-con {
     display: flex;
@@ -133,10 +123,6 @@ header {
     animation: spin 1s linear infinite;
 }
 
-.hidden {
-    display: none;
-}
-
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -147,11 +133,14 @@ header {
     }
 }
 
+.hidden {
+    display: none;
+}
+
 .spinner-img {
     width: 100px;
     height: 100px;
 }
-
 
 .pokemon-name-con {
     display: flex;
@@ -162,29 +151,17 @@ header {
     text-shadow: 0 0 5px #e4e4d8;
 }
 
-
-
 .poke-img {
     position: absolute;
     top: 80px;
     left: 30px;
     height: 200px;
     width: 200px;
-
-    --scale: 1;
-    --transition-duration: 250ms;
-    scale: var(--scale);
-    transition: scale var(--transition-duration) ease-in-out;
-
 }
 
 .poke-img:hover {
-    --scale: 1.1;
     filter: drop-shadow(10px 10px 4px #272728);
 }
-
-
-
 
 .type-con {
     position: absolute;
@@ -209,65 +186,49 @@ header {
     padding: 5px;
 }
 
-
 .load-more-button {
     margin-bottom: 20px;
     font-family: "GeistPixel-Regular";
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-
-
-
 }
 
 
 .grass.poison {
-    /* background-image: radial-gradient(circle 150px, #A33EA1, #7AC74C); */
-    /* background-image: conic-gradient(#7AC74C 40%, #A33EA1 0 70%); */
-    /* border-radius: 50%; */
-
     background: linear-gradient(135deg, #7AC74C 30%, #A33EA1 70%);
 }
 
 .fire.flying {
     background: linear-gradient(135deg, #EE8130 30%, #A890F0 70%);
-
 }
 
 .bug.flying {
     background: linear-gradient(135deg, #A6B91A 30%, #A890F0 70%);
-
 }
 
 .bug.poison {
     background: linear-gradient(135deg, #A6B91A 30%, #A33EA1 70%);
-
 }
 
 .normal.flying {
     background: linear-gradient(135deg, #A8A77A 30%, #A890F0 70%);
-
 }
 
 .poison.ground {
     background: linear-gradient(135deg, #A33EA1 30%, #E2BF65 70%);
-
 }
 
 .normal.fairy {
     background: linear-gradient(135deg, #A8A77A 30%, #D685AD 70%);
-
 }
 
 .poison.flying {
     background: linear-gradient(135deg, #A33EA1 30%, #A890F0 70%);
-
 }
 
 .bug.grass {
     background: linear-gradient(135deg, #A6B91A 30%, #7AC74C 70%);
-
 }
 
 .water.fighting {
@@ -476,11 +437,6 @@ header {
 
 
 
-
-
-
-
-
 .grass {
     background-color: #7AC74C;
 }
@@ -576,10 +532,6 @@ dialog::backdrop {
     backdrop-filter: blur(8px);
 }
 
-
-
-
-
 .dialog-header {
     display: flex;
     padding-top: 0px;
@@ -589,7 +541,6 @@ dialog::backdrop {
     text-shadow: 0 0 5px #e4e4d8;
     gap: 10%;
 }
-
 
 .close-dialog-x {
     position: absolute;
@@ -609,7 +560,6 @@ dialog::backdrop {
 .close-dialog-x:hover {
     background-color: rgb(201, 14, 14);
 }
-
 
 .dialog-poke-img-con {
     position: absolute;
@@ -637,7 +587,8 @@ dialog::backdrop {
     right: 10px;
 }
 
-.prev-pokemon, .next-pokemon {
+.prev-pokemon,
+.next-pokemon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -653,7 +604,8 @@ dialog::backdrop {
     color: white;
 }
 
-.prev-pokemon:hover, .next-pokemon:hover {
+.prev-pokemon:hover,
+.next-pokemon:hover {
     background-color: gray;
     cursor: pointer;
 }
@@ -665,8 +617,6 @@ dialog::backdrop {
     top: 145px;
     left: 0px;
     width: auto;
-
-
 }
 
 .dialog-single-type,
@@ -680,8 +630,6 @@ dialog::backdrop {
     padding: 5px;
 }
 
-
-
 .nav-con {
     position: relative;
     top: 132px;
@@ -692,10 +640,7 @@ dialog::backdrop {
     height: 50px;
     font-size: 18px;
     padding: 0 10px 0 10px;
-
-
 }
-
 
 .nav-con-btn {
     background-color: transparent;
@@ -704,7 +649,6 @@ dialog::backdrop {
     font-size: 18px;
     font-weight: bold;
     font-family: "GeistPixel-Regular";
-
 }
 
 .nav-con-btn:hover {
@@ -713,14 +657,12 @@ dialog::backdrop {
 
 .nav-con-btn:focus {
     text-shadow: 0 0 10px #e00724;
-    /* background-color: #db0c0c; */
     border-bottom: 2px solid white;
 }
 
 .separator {
     border: 1px solid white;
     height: 20px;
-
 }
 
 .dialog-info-con {
@@ -731,17 +673,12 @@ dialog::backdrop {
     height: 179px;
     display: flex;
     flex-direction: column;
-    /* font-size: 16px; */
-
 }
-
 
 .stats-con {
     display: flex;
-    /* justify-content: space-between; */
     align-items: center;
     height: 30px;
-
 }
 
 .stats-name-con {
@@ -760,7 +697,6 @@ dialog::backdrop {
     position: relative;
     left: 0px;
     overflow: hidden;
-
 }
 
 .stats-points {
@@ -770,7 +706,6 @@ dialog::backdrop {
     justify-content: center;
     width: 100%;
     color: #8e8ea2;
-    /* background-color: #A33EA1; */
 }
 
 .status-bar {
@@ -798,7 +733,6 @@ dialog::backdrop {
 
 .all-abilities {
     display: flex;
-
 }
 
 .abilities-con {
@@ -814,19 +748,16 @@ dialog::backdrop {
     padding: 0;
 }
 
-
 .results-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-
 .second-type.undefined {
     margin: 0;
     padding: 0;
 }
-
 
 .load-more-con {
     display: flex;
@@ -842,21 +773,18 @@ dialog::backdrop {
     width: 100%;
 }
 
-
 .evo-chain-img {
     height: 50px;
     width: 50px;
 }
-
 
 .single-evo-con {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-size: 16px;
-    /* hyphens: auto; */
+    hyphens: auto;
     word-break: break-word;
-
 }
 
 .not-found-message {
@@ -869,7 +797,6 @@ dialog::backdrop {
     height: 300px;
     width: 300px;
 }
-
 
 footer {
     display: flex;
@@ -888,8 +815,6 @@ footer {
     font-family: "GeistPixel-Regular";
 }
 
-
-
 @media (max-width: 430px) {
     .header-content {
         flex-direction: column;
@@ -903,5 +828,9 @@ footer {
     .find-pokemon-con {
         margin-bottom: 10px;
         padding: 0;
+    }
+
+    .footer-text {
+        width: 300px;
     }
 }
