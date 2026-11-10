@@ -275,6 +275,8 @@ function findPokemon() {
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
     hideLoadMoreBtn(currentIndex + 20);
+
+    
 }
 
 function findSinglePokemon(pokemon) {
@@ -343,6 +345,8 @@ function showNextPokemon(id) {
         hideDialogUndefinedTypes(id + 1);
     }
     nextLoop(id);
+
+    showNextResultsPokemon(id);
 }
 
 function nextLoop(id) {
@@ -351,6 +355,7 @@ function nextLoop(id) {
 
     if (pokemon.id === singlePokeCard.children.length) {
         currentPokeIndex = 0;
+        id = 1;
         singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
         showMainInfo(id);
     }
@@ -383,3 +388,33 @@ function prevLoop(id) {
         hideDialogUndefinedTypes(currentPokeIndex + 1);
     }
 }
+
+
+
+
+function showNextResultsPokemon(id) {
+    let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
+    let resultsContainer = document.getElementById("pokemonResultsContainer");
+    // let pokemon = pokeData[pokemonIndex];
+    // currentPokeIndex = pokemonIndex;
+    pokemonIndex = 0;
+
+    let currentIndex = 0;
+    
+    // for (let index = 0; index < resultsContainer.children.length; index++) {
+        
+    //     index++;
+    //     singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
+    //     showMainInfo(id + 1);
+    //     hideDialogUndefinedTypes(id + 1);
+        
+    // }
+
+    if (pokemonIndex < resultsContainer.children.length) {
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[pokemonIndex]);
+        showMainInfo(id + 1);
+        hideDialogUndefinedTypes(id + 1);
+    }
+}
+
+
