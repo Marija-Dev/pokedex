@@ -115,6 +115,9 @@ header {
     cursor: pointer;
     height: 350px;
     width: 260px;
+
+    
+
 }
 
 .spinner-con {
@@ -168,9 +171,15 @@ header {
     left: 30px;
     height: 200px;
     width: 200px;
+
+    --scale: 1;
+    --transition-duration: 250ms;
+    scale: var(--scale);
+    transition: scale var(--transition-duration) ease-in-out;
 }
 
 .poke-img:hover {
+    --scale: 1.1;
     filter: drop-shadow(10px 10px 4px #272728);
 }
 

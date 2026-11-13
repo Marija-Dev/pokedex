@@ -14,6 +14,7 @@ let currentIndex = 40;
 let singlePokeCard = document.getElementById("singlePokeCard");
 let maxStats = [255, 180, 230, 194, 230, 180];
 let currentPokeIndex = 0;
+let filteredPokemon = [];
 
 function init() {
     showLoadingSpinner();
@@ -265,6 +266,7 @@ function imgNotAvailable() {
 function findPokemon() {
     let inputValue = document.getElementById("inputField").value.toLowerCase();
     let pokemon = pokeData.filter(pokemon => pokemon.forms[0].name.toLowerCase().startsWith(inputValue));
+    filteredPokemon = pokemon;
     singlePokeCard.innerHTML = "";
     document.getElementById("pokemonResultsContainer").innerHTML = "";
 
@@ -275,8 +277,6 @@ function findPokemon() {
     findSinglePokemon(pokemon);
     findPokemonHelper(pokemon);
     hideLoadMoreBtn(currentIndex + 20);
-
-    
 }
 
 function findSinglePokemon(pokemon) {
@@ -389,32 +389,33 @@ function prevLoop(id) {
     }
 }
 
-
-
-
 function showNextResultsPokemon(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
     let resultsContainer = document.getElementById("pokemonResultsContainer");
-    // let pokemon = pokeData[pokemonIndex];
-    // currentPokeIndex = pokemonIndex;
-    pokemonIndex = 0;
+    let currentPokemonIndex = 0;
 
-    let currentIndex = 0;
-    
-    // for (let index = 0; index < resultsContainer.children.length; index++) {
-        
-    //     index++;
-    //     singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[currentPokeIndex]);
-    //     showMainInfo(id + 1);
-    //     hideDialogUndefinedTypes(id + 1);
-        
-    // }
+    if (filteredPokemon.length > 1) {
+        currentPokemonIndex++;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[currentPokemonIndex]);
+        showMainInfo(filteredPokemon[currentPokemonIndex].id);
+        hideDialogUndefinedTypes(filteredPokemon[currentPokemonIndex].id);
+    }
 
-    if (pokemonIndex < resultsContainer.children.length) {
-        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(pokeData[pokemonIndex]);
-        showMainInfo(id + 1);
-        hideDialogUndefinedTypes(id + 1);
+    showNextResultsPokemonLoop(id, currentPokemonIndex);
+}
+
+function showNextResultsPokemonLoop(id, currentPokemonIndex) {
+    if (currentPokemonIndex === filteredPokemon.length - 1) {
+        currentPokemonIndex = 0;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[currentPokemonIndex]);
+        showMainInfo(filteredPokemon[currentPokemonIndex].id);
+        hideDialogUndefinedTypes(filteredPokemon[currentPokemonIndex].id);
     }
 }
+
+
+
+
+
 
 
