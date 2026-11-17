@@ -112,6 +112,7 @@ function renderPokemon(promises) {
     }
 
     showLoadMoreButton();
+    showFooter();
 }
 
 function hideUndefinedTypes(pokemon) {
@@ -146,7 +147,6 @@ function closeDialog() {
 function showMainInfo(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
     let dialogInfoCon = document.getElementById("dialogInfoCon");
-
     dialogInfoCon.innerHTML = getMainInfoTemplate(pokemon);
 
     calculateHeightAndWeight(pokemon);
@@ -269,7 +269,6 @@ function findPokemon() {
     filteredPokemon = pokemon;
     singlePokeCard.innerHTML = "";
     document.getElementById("pokemonResultsContainer").innerHTML = "";
-
     if (inputValue.length < 3) {
         renderPokemon(pokeData);
         return
@@ -334,8 +333,6 @@ function showLoadMoreButton() {
 
 function showNextPokemon(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
-    let singlePokeCard = document.getElementById("singlePokeCard");
-    let pokemon = pokeData[pokemonIndex];
     currentPokeIndex = pokemonIndex;
 
     if (currentPokeIndex < singlePokeCard.children.length - 1) {
@@ -345,13 +342,11 @@ function showNextPokemon(id) {
         hideDialogUndefinedTypes(id + 1);
     }
     nextLoop(id);
-
     showNextResultsPokemon(id);
 }
 
 function nextLoop(id) {
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let singlePokeCard = document.getElementById("singlePokeCard");
 
     if (pokemon.id === singlePokeCard.children.length) {
         currentPokeIndex = 0;
@@ -363,7 +358,6 @@ function nextLoop(id) {
 
 function showPrevPokemon(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
-    let singlePokeCard = document.getElementById("singlePokeCard");
     currentPokeIndex = pokemonIndex;
 
     if ((currentPokeIndex > 0) && (currentPokeIndex < singlePokeCard.children.length)) {
@@ -374,12 +368,12 @@ function showPrevPokemon(id) {
     }
 
     prevLoop(id);
+    showPrevResultsPokemon(id);
 }
 
 function prevLoop(id) {
     let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
     let pokemon = pokeData.find(pokemon => pokemon.id === id);
-    let singlePokeCard = document.getElementById("singlePokeCard");
 
     if (pokemon.id === 1) {
         currentPokeIndex = singlePokeCard.children.length - 1;
@@ -390,32 +384,51 @@ function prevLoop(id) {
 }
 
 function showNextResultsPokemon(id) {
-    let pokemonIndex = pokeData.findIndex(pokemon => pokemon.id === id);
-    let resultsContainer = document.getElementById("pokemonResultsContainer");
-    let currentPokemonIndex = 0;
+    let filteredPokeIndex = filteredPokemon.findIndex(pokemon => pokemon.id === id);
 
-    if (filteredPokemon.length > 1) {
-        currentPokemonIndex++;
-        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[currentPokemonIndex]);
-        showMainInfo(filteredPokemon[currentPokemonIndex].id);
-        hideDialogUndefinedTypes(filteredPokemon[currentPokemonIndex].id);
-    }
-
-    showNextResultsPokemonLoop(id, currentPokemonIndex);
-}
-
-function showNextResultsPokemonLoop(id, currentPokemonIndex) {
-    if (currentPokemonIndex === filteredPokemon.length - 1) {
-        currentPokemonIndex = 0;
-        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[currentPokemonIndex]);
-        showMainInfo(filteredPokemon[currentPokemonIndex].id);
-        hideDialogUndefinedTypes(filteredPokemon[currentPokemonIndex].id);
+    if (filteredPokemon.length === 0) {
+        return
+    } else if (filteredPokeIndex === filteredPokemon.length - 1) {
+        showNextResultsPokemonLoop(id, filteredPokeIndex);
+    } else if (filteredPokemon.length > 1) {
+        filteredPokeIndex++;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[filteredPokeIndex]);
+        showMainInfo(filteredPokemon[filteredPokeIndex].id);
+        hideDialogUndefinedTypes(filteredPokemon[filteredPokeIndex].id);
     }
 }
 
+function showNextResultsPokemonLoop(id, filteredPokeIndex) {
+    filteredPokeIndex = 0;
+    singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[filteredPokeIndex]);
+    showMainInfo(filteredPokemon[filteredPokeIndex].id);
+    hideDialogUndefinedTypes(filteredPokemon[filteredPokeIndex].id);
+}
 
 
+function showPrevResultsPokemon(id) {
+    let filteredPokeIndex = filteredPokemon.findIndex(pokemon => pokemon.id === id);
 
+    if (filteredPokeIndex > 0) {
+        filteredPokeIndex--;
+        singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[filteredPokeIndex]);
+        showMainInfo(filteredPokemon[filteredPokeIndex].id);
+        hideDialogUndefinedTypes(filteredPokemon[filteredPokeIndex].id);
 
+    } else if (filteredPokeIndex === 0) {
+        showPrevResultsLoop(id);
+    }
+}
 
+function showPrevResultsLoop(id) {
+    filteredPokeIndex = filteredPokemon.length - 1;
+    singlePokeDialog.innerHTML = getSinglePokemonDialogTemplate(filteredPokemon[filteredPokeIndex]);
+    showMainInfo(filteredPokemon[filteredPokeIndex].id);
+    hideDialogUndefinedTypes(filteredPokemon[filteredPokeIndex].id);
+}
+
+function showFooter() {
+    let footerCon = document.getElementById("footer");
+    footerCon.innerHTML = getFooterTemplate();
+}
 

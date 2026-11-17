@@ -20,7 +20,7 @@ function getSinglePokemonTemplate(pokemon) {
 }
 
 function getSinglePokemonDialogTemplate(pokemon) {
-    return `<main data-id="overlay-pokemon-name">
+    return `<div class="single-pokemon-card-main" data-id="overlay-pokemon-name">
                 <div class="dialog-header">
                     <h2># ${pokemon.id}</h2>
                     <h2 class="dialog-poke-name">${pokemon.forms[0].name.charAt(0).toUpperCase() + pokemon.forms[0].name.slice(1)}</h2>
@@ -53,7 +53,7 @@ function getSinglePokemonDialogTemplate(pokemon) {
                 <div id="dialogInfoCon" class="dialog-info-con">
                 
                 </div>
-            </main>
+            </div>
            `
 }
 
@@ -152,6 +152,13 @@ function getLoadMoreTemplate() {
 function getNotFoundMessageTemplate() {
     return `<div data-id="not-found" class="not-found-message">
                 <img class="pokemon-not-found" src="./pokemon-not-found.png" alt="Pokemon not found">
+            </div>
+           `
+}
+
+function getFooterTemplate() {
+    return `<div class="footer">
+                <p class="footer-text">Created with ♥️ by Marija Galiot 2026</p>
             </div>
            `
 }
