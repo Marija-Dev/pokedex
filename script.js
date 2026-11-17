@@ -20,16 +20,12 @@ function init() {
     showLoadingSpinner();
 }
 
-function showLoadingSpinner() {
+async function showLoadingSpinner() {
     let loadingSpinner = document.getElementById("loadingSpinner");
     loadingSpinner.classList.remove("hidden");
-
-    setTimeout(() => {
-        loadingSpinner.classList.add("hidden")
-    }, 3000);
-
-    fetchPokemon();
-    fetchEvoChain();
+    await fetchPokemon();
+    await fetchEvoChain();
+    loadingSpinner.classList.add("hidden");
 }
 
 async function fetchPokemon() {
